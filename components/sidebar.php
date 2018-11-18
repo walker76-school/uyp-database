@@ -22,9 +22,9 @@
     </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="account_info.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
-      <span>Charts</span></a>
+      <span>Account Info</span></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">
