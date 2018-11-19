@@ -52,6 +52,24 @@
                     $phoneNumber;
                     $siblingName;
 
+                    $parent1Name;
+                    $parent1AddressLine1;
+                    $parent1AddressLine2;
+                    $parent1City;
+                    $parent1State;
+                    $parent1Zip;
+                    $parent1Email;
+                    $parent1PhoneNumber;
+
+                    $parent2Name;
+                    $parent2AddressLine1;
+                    $parent2AddressLine2;
+                    $parent2City;
+                    $parent2State;
+                    $parent2Zip;
+                    $parent2Email;
+                    $parent2PhoneNumber;
+
                     if (!empty($_POST["suffix"])) {
                         $suffix = $_POST["suffix"];
                     } else {
@@ -201,6 +219,102 @@
                     } else {
                         $siblingName = "-";
                     }
+
+                    if (!empty($_POST["parent1Name"])) {
+                        $parent1Name = $_POST["parent1Name"];
+                    } else {
+                        $parent1Name = "-";
+                    }
+
+                    if (!empty($_POST["parent1AddressLine1"])) {
+                        $parent1AddressLine1 = $_POST["parent1AddressLine1"];
+                    } else {
+                        $parent1AddressLine1 = "-";
+                    }
+
+                    if (!empty($_POST["parent1AddressLine2"])) {
+                        $parent1AddressLine2 = $_POST["parent1AddressLine2"];
+                    } else {
+                        $parent1AddressLine2 = "-";
+                    }
+
+                    if (!empty($_POST["parent1City"])) {
+                        $parent1City = $_POST["parent1City"];
+                    } else {
+                        $parent1City = "-";
+                    }
+
+                    if (!empty($_POST["parent1State"])) {
+                        $parent1State = $_POST["parent1State"];
+                    } else {
+                        $parent1State = "-";
+                    }
+
+                    if (!empty($_POST["parent1Zip"])) {
+                        $parent1Zip = $_POST["parent1Zip"];
+                    } else {
+                        $parent1Zip = "-";
+                    }
+
+                    if (!empty($_POST["parent1Email"])) {
+                        $parent1Email = $_POST["parent1Email"];
+                    } else {
+                        $parent1Email = "-";
+                    }
+
+                    if (!empty($_POST["parent1PhoneNumber"])) {
+                        $parent1PhoneNumber = $_POST["parent1PhoneNumber"];
+                    } else {
+                        $parent1PhoneNumber = "-";
+                    }
+
+                    if (!empty($_POST["parent2Name"])) {
+                        $parent2Name = $_POST["parent2Name"];
+                    } else {
+                        $parent2Name = "-";
+                    }
+
+                    if (!empty($_POST["parent2AddressLine1"])) {
+                        $parent2AddressLine1 = $_POST["parent2AddressLine1"];
+                    } else {
+                        $parent2AddressLine1 = "-";
+                    }
+
+                    if (!empty($_POST["parent2AddressLine2"])) {
+                        $parent2AddressLine2 = $_POST["parent2AddressLine2"];
+                    } else {
+                        $parent2AddressLine2 = "-";
+                    }
+
+                    if (!empty($_POST["parent2City"])) {
+                        $parent2City = $_POST["parent2City"];
+                    } else {
+                        $parent2City = "-";
+                    }
+
+                    if (!empty($_POST["parent2State"])) {
+                        $parent2State = $_POST["parent2State"];
+                    } else {
+                        $parent2State = "-";
+                    }
+
+                    if (!empty($_POST["parent2Zip"])) {
+                        $parent2Zip = $_POST["parent2Zip"];
+                    } else {
+                        $parent2Zip = "-";
+                    }
+
+                    if (!empty($_POST["parent2Email"])) {
+                        $parent2Email = $_POST["parent2Email"];
+                    } else {
+                        $parent2Email = "-";
+                    }
+
+                    if (!empty($_POST["parent2PhoneNumber"])) {
+                        $parent2PhoneNumber = $_POST["parent2PhoneNumber"];
+                    } else {
+                        $parent2PhoneNumber = "-";
+                    }
                 ?>
 
                 <div class="col-md-4">
@@ -300,7 +414,7 @@
                 <div class="col-md-4">
                     <?php echo "<label>$schoolType</label>" ?>
                 </div>
-
+<!-- TODO - Check if home and hide these fields as autofill may still fill them with values on submit -->
                 <div class="col-md-4">
                     <h5>School Name</h5>
                 </div>
@@ -364,6 +478,132 @@
                     <?php echo "<label>$siblingName</label>" ?>
                 </div>
 
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 Name</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1Name</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 Address Line 1</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1AddressLine1</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 Address Line 2</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1AddressLine2</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 City</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1City</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 State</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1State</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 Zip</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1Zip</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 Email</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1Email</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 Phone Number</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1PhoneNumber</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 1 Phone Type</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent1PhoneType</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 Name</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2Name</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 Address Line 1</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2AddressLine1</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 Address Line 2</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2AddressLine2</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 City</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2City</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 State</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2State</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 Zip</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2Zip</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 Email</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2Email</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 Phone Number</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2PhoneNumber</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Parent/Guardian 2 Phone Type</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$parent2PhoneType</label>" ?>
+                </div>
+
                 <form method="post" action="primary_insert.php">
                     
                     <input type="hidden" name="suffix" value=<?php echo $suffix ?> >
@@ -391,6 +631,24 @@
                     <input type="hidden" name="email" value=<?php echo $email ?> >
                     <input type="hidden" name="phoneNumber" value=<?php echo $phoneNumber ?> >
                     <input type="hidden" name="siblingName" value=<?php echo $siblingName ?> >
+                    <input type="hidden" name="parent1Name" value=<?php echo $parent1Name ?> >
+                    <input type="hidden" name="parent1AddressLine1" value=<?php echo $parent1AddressLine1 ?> >
+                    <input type="hidden" name="parent1AddressLine2" value=<?php echo $parent1AddressLine2 ?> >
+                    <input type="hidden" name="parent1City" value=<?php echo $parent1City ?> >
+                    <input type="hidden" name="parent1State" value=<?php echo $parent1State ?> >
+                    <input type="hidden" name="parent1Zip" value=<?php echo $parent1Zip ?> >
+                    <input type="hidden" name="parent1Email" value=<?php echo $parent1Email ?> >
+                    <input type="hidden" name="parent1PhoneNumber" value=<?php echo $parent1PhoneNumber ?> >
+                    <input type="hidden" name="parent1PhoneType" value=<?php echo $parent1PhoneType ?> >
+                    <input type="hidden" name="parent2Name" value=<?php echo $parent2Name ?> >
+                    <input type="hidden" name="parent2AddressLine1" value=<?php echo $parent2AddressLine1 ?> >
+                    <input type="hidden" name="parent2AddressLine2" value=<?php echo $parent2AddressLine2 ?> >
+                    <input type="hidden" name="parent2City" value=<?php echo $parent2City ?> >
+                    <input type="hidden" name="parent2State" value=<?php echo $parent2State ?> >
+                    <input type="hidden" name="parent2Zip" value=<?php echo $parent2Zip ?> >
+                    <input type="hidden" name="parent2Email" value=<?php echo $parent2Email ?> >
+                    <input type="hidden" name="parent2PhoneNumber" value=<?php echo $parent2PhoneNumber ?> >
+                    <input type="hidden" name="parent2PhoneType" value=<?php echo $parent2PhoneType ?> >
 
                     <input class='btn btn-primary btn-block col-md-3' type='submit' name='submit' value='Submit'>
 

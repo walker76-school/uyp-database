@@ -144,7 +144,7 @@
     }
 
     if (!empty($_POST["gender"])) {
-        $gender = "\"" . $_POST["gender"] . "\"";
+        $gender = "\"" . strtolower($_POST["gender"]) . "\"";
         if(strcmp($gender, "\"-\"") == 0){
             $gender = 'NULL';
         }
@@ -153,7 +153,7 @@
     }
 
     if (!empty($_POST["race"])) {
-        $race = "\"" . $_POST["race"] . "\"";
+        $race = "\"" . strtolower($_POST["race"]) . "\"";
         if(strcmp($race, "\"-\"") == 0){
             $race = 'NULL';
         }
@@ -251,15 +251,183 @@
         $siblingName = null;
     }
 
-    $id = '0';
-    $birthday = "\"" . $month . "-" . $day . "-" . $year . "\"";
+    if (!empty($_POST["parent1Name"])) {
+        $parent1Name = "\"" . $_POST["parent1Name"] . "\"";
+        if(strcmp($parent1Name, "\"-\"") == 0){
+            $parent1Name = 'NULL';
+        }
+    } else {
+        $parent1Name = null;
+    }
+
+    if (!empty($_POST["parent1AddressLine1"])) {
+        $parent1AddressLine1 = "\"" . $_POST["parent1AddressLine1"] . "\"";
+        if(strcmp($parent1AddressLine1, "\"-\"") == 0){
+            $parent1AddressLine1 = 'NULL';
+        }
+    } else {
+        $parent1AddressLine1 = null;
+    }
+
+    if (!empty($_POST["parent1AddressLine2"])) {
+        $parent1AddressLine2 = "\"" . $_POST["parent1AddressLine2"] . "\"";
+        if(strcmp($parent1AddressLine2, "\"-\"") == 0){
+            $parent1AddressLine2 = 'NULL';
+        }
+    } else {
+        $parent1AddressLine2 = null;
+    }
+
+    if (!empty($_POST["parent1City"])) {
+        $parent1City = "\"" . $_POST["parent1City"] . "\"";
+        if(strcmp($parent1City, "\"-\"") == 0){
+            $parent1City = 'NULL';
+        }
+    } else {
+        $parent1City = null;
+    }
+
+    if (!empty($_POST["parent1State"])) {
+        $parent1State = "\"" . $_POST["parent1State"] . "\"";
+        if(strcmp($parent1State, "\"-\"") == 0){
+            $parent1State = 'NULL';
+        }
+    } else {
+        $parent1State = null;
+    }
+
+    if (!empty($_POST["parent1Zip"])) {
+        $parent1Zip = "\"" . $_POST["parent1Zip"] . "\"";
+        if(strcmp($parent1Zip, "\"-\"") == 0){
+            $parent1Zip = 'NULL';
+        }
+    } else {
+        $parent1Zip = null;
+    }
+
+    if (!empty($_POST["parent1Email"])) {
+        $parent1Email = "\"" . $_POST["parent1Email"] . "\"";
+        if(strcmp($parent1Email, "\"-\"") == 0){
+            $parent1Email = 'NULL';
+        }
+    } else {
+        $parent1Email = null;
+    }
+
+    if (!empty($_POST["parent1PhoneNumber"])) {
+        $parent1PhoneNumber = "\"" . $_POST["parent1PhoneNumber"] . "\"";
+        if(strcmp($parent1PhoneNumber, "\"-\"") == 0){
+            $parent1PhoneNumber = 'NULL';
+        }
+    } else {
+        $parent1PhoneNumber = null;
+    }
+
+    if (!empty($_POST["parent1PhoneType"])) {
+        $parent1PhoneType = "\"" . $_POST["parent1PhoneType"] . "\"";
+        if(strcmp($parent1PhoneType, "\"-\"") == 0){
+            $parent1PhoneType = 'NULL';
+        }
+    } else {
+        $parent1PhoneType = null;
+    }
+
+    if (!empty($_POST["parent2Name"])) {
+        $parent2Name = "\"" . $_POST["parent2Name"] . "\"";
+        if(strcmp($parent2Name, "\"-\"") == 0){
+            $parent2Name = 'NULL';
+        }
+    } else {
+        $parent2Name = null;
+    }
+
+    if (!empty($_POST["parent2AddressLine1"])) {
+        $parent2AddressLine1 = "\"" . $_POST["parent2AddressLine1"] . "\"";
+        if(strcmp($parent2AddressLine1, "\"-\"") == 0){
+            $parent2AddressLine1 = 'NULL';
+        }
+    } else {
+        $parent2AddressLine1 = null;
+    }
+
+    if (!empty($_POST["parent2AddressLine2"])) {
+        $parent2AddressLine2 = "\"" . $_POST["parent2AddressLine2"] . "\"";
+        if(strcmp($parent2AddressLine2, "\"-\"") == 0){
+            $parent2AddressLine2 = 'NULL';
+        }
+    } else {
+        $parent2AddressLine2 = null;
+    }
+
+    if (!empty($_POST["parent2City"])) {
+        $parent2City = "\"" . $_POST["parent2City"] . "\"";
+        if(strcmp($parent2City, "\"-\"") == 0){
+            $parent2City = 'NULL';
+        }
+    } else {
+        $parent2City = null;
+    }
+
+    if (!empty($_POST["parent2State"])) {
+        $parent2State = "\"" . $_POST["parent2State"] . "\"";
+        if(strcmp($parent2State, "\"-\"") == 0){
+            $parent2State = 'NULL';
+        }
+    } else {
+        $parent2State = null;
+    }
+
+    if (!empty($_POST["parent2Zip"])) {
+        $parent2Zip = "\"" . $_POST["parent2Zip"] . "\"";
+        if(strcmp($parent2Zip, "\"-\"") == 0){
+            $parent2Zip = 'NULL';
+        }
+    } else {
+        $parent2Zip = null;
+    }
+
+    if (!empty($_POST["parent2Email"])) {
+        $parent2Email = "\"" . $_POST["parent2Email"] . "\"";
+        if(strcmp($parent2Email, "\"-\"") == 0){
+            $parent2Email = 'NULL';
+        }
+    } else {
+        $parent2Email = null;
+    }
+
+    if (!empty($_POST["parent2PhoneNumber"])) {
+        $parent2PhoneNumber = "\"" . $_POST["parent2PhoneNumber"] . "\"";
+        if(strcmp($parent2PhoneNumber, "\"-\"") == 0){
+            $parent2PhoneNumber = 'NULL';
+        }
+    } else {
+        $parent2PhoneNumber = null;
+    }
+
+    if (!empty($_POST["parent2PhoneType"])) {
+        $parent2PhoneType = "\"" . $_POST["parent2PhoneType"] . "\"";
+        if(strcmp($parent2PhoneType, "\"-\"") == 0){
+            $parent2PhoneType = 'NULL';
+        }
+    } else {
+        $parent2PhoneType = null;
+    }
+
+
+    $id = generateRandomUser(4);
+    $birthday = "\"" . $year . "-" . $month . "-" . $day . "\"";
+
+    $testingStmt = 'INSERT INTO Users (ID, Password) VALUES (' . $id . ', "' . generateRandomPass() . '");' ;
+    if ($conn->query($testingStmt) === TRUE) {
+        echo 'Inserted User';        
+    } else {
+        echo "Error: " . $testingStmt . "<br>" . $conn->error;
+    }
 
     $stmt = 'INSERT INTO SECONDARY_USER_INFO (ID, Suffix, First_Name, Last_Name, Initial, Preferred_Name, Address_Line_1, Address_Line_2, City, State, Zip, Birthday, Gender, Race, School_Name, School_District, Grade_In_Fall, GT_Status, Grad_Year, High_School, Email, Phone_Number, Sibling_Name) VALUES (' . $id . ', ' . $suffix . ', ' . $firstName . ', ' . $lastName . ', ' . $middleInitial . ', ' . $preferredName . ', ' . $addressLine1 . ', ' . $addressLine2 . ', ' . $city . ', ' . $state . ', ' . $zip . ', ' . $birthday . ', ' . $gender . ', ' . $race . ', ' . $schoolName . ', ' . $schoolDistrict . ', ' . $gradeInFall . ', ' . $gtStatus . ', ' . $gradYear . ', ' . $highSchool . ', ' . $email . ', ' . $phoneNumber . ', ' . $siblingName . ');' ; // ON DUPLICATE KEY UPDATE ;
 
-    //echo $stmt . "\n";
-
     if ($conn->query($stmt) === TRUE) {
-        echo "New record created successfully";
+        header('Location: index.php');
     } else {
         echo "Error: " . $stmt . "<br>" . $conn->error;
     }

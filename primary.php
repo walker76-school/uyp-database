@@ -165,13 +165,13 @@
                             <div class="col-md-2">
                                 <h5>Gender</h5>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <select class="form-control" name="gender" required="required">
                                     <option value="" disabled selected></option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     <option value="Other">Other</option>
-                                    <option value="Prefer not to say">Prefer not to say</option>
+                                    <option value="Prefer">Prefer not to say</option>
                                 </select>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                             <div class="col-md-2">
                                 <h5>Race</h5>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <select class="form-control" name="race" required="required">
                                     <option value="" disabled selected></option>
                                     <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
@@ -204,7 +204,7 @@
                             <div class="col-md-2">
                                 <h5>What kind of school did you go to?</h5>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <select class="form-control" id="schoolType" required="required" name="schoolType">
                                     <option value="" disabled selected></option>
                                     <option value="Public">Public</option>
@@ -248,7 +248,18 @@
                                 <h5>Grade Level in Upcoming Fall</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="gradeInFall" class="form-control" required="required">
+                                <select class="form-control" id="gradeInFall" required="required" name="gradeInFall">
+                                    <option value="" disabled selected></option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -259,7 +270,7 @@
                             <div class="col-md-2">
                                 <h5>Have you ever been in a GT Program?</h5>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-3">
                                 <select class="form-control" id="gtStatus" required="required" name="gtStatus">
                                     <option value="" disabled selected></option>
                                     <option value="Yes">Yes</option>
@@ -276,7 +287,7 @@
                             <div class="col-md-2">
                                 <h5>Graduation Year</h5>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <select class="form-control" id="gradYear" required="required" name="gradYear">
                                     <option value="" disabled selected></option>
                                     <option value="2019">2019</option>
@@ -439,6 +450,23 @@
                         </div>
                     </div>
 
+                    <!-- Parent 1 Phone Type -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-2">
+                                <h5>Parent/Guardian 1 Phone Type</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="parent1PhoneType" required="required">
+                                    <option value="" disabled selected></option>
+                                    <option value="Work">Work</option>
+                                    <option value="Cell">Cell</option>
+                                    <option value="Home">Home</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Parent 2 -->
                     <div class="form-group">
                         <h5>Do you want to add a second parent/guardian?</h5>
@@ -537,6 +565,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Parent 1 Phone Type -->
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-2">
+                                    <h5>Parent/Guardian 2 Phone Type</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <select id='parent2PhoneType' class="form-control" name="parent2PhoneType">
+                                        <option value="" disabled selected></option>
+                                        <option value="Work">Work</option>
+                                        <option value="Cell">Cell</option>
+                                        <option value="Home">Home</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     
                     <input class='btn btn-primary btn-block col-md-3' type='submit' name='next' value='Next'>
@@ -578,6 +624,7 @@
                 document.getElementById('parent2Zip').required = 'required';
                 document.getElementById('parent2Email').required = 'required';
                 document.getElementById('parent2PhoneNumber').required = 'required';
+                document.getElementById('parent2PhoneType').required = 'required';
     
             }
             else {
@@ -589,6 +636,7 @@
                 document.getElementById('parent2Zip').required = '';
                 document.getElementById('parent2Email').required = '';
                 document.getElementById('parent2PhoneNumber').required = '';
+                document.getElementById('parent2PhoneType').required = '';
     
             }
         }
