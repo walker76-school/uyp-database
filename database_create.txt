@@ -15,26 +15,33 @@ CREATE TABLE SECONDARY_USER_INFO (
 	Last_Name VARCHAR(255) NOT NULL,
 	Initial CHAR(1),
 	Preferred_Name VARCHAR(255),
+	Address_Line_1 VARCHAR(255),
+	Address_Line_2 VARCHAR(255),
+	City VARCHAR(255),
+	State VARCHAR(255),
+	Zip VARCHAR(255),
 	Birthday DATE NOT NULL,
 	Gender BOOLEAN NOT NULL,
 	Race VARCHAR(255),
 	School_Name VARCHAR(255),
-	School District VARCHAR(255),
+	School_District VARCHAR(255),
+	Grade_In_Fall INT,
 	GT_Status Enum('yes', 'no', 'unsure'),
 	Grad_Year INT,
 	High_School VARCHAR(255),
+	Email VARCHAR(25),
 	Phone_Number VARCHAR(10),
 	Sibling_Name VARCHAR(255),
 	Primary Key(ID),
 	Foreign Key(ID) REFERENCES USERS(ID) ON DELETE CASCADE
 );
 
-CREATE TABLE Admin_User_Info (
+CREATE TABLE ADMIN_USER_INFO (
 	ID int NOT NULL,
 	Year_Accepted INT,
 	Grade_Accepted INT,
-	Status VARCHAR(255),
-	Grant VARCHAR(255),
+	Enrollment_Status VARCHAR(255),
+	Grant_Status VARCHAR(255),
 	Disability VARCHAR(255),
 	Health VARCHAR(255),
 	ELL BOOLEAN,
@@ -80,18 +87,18 @@ CREATE TABLE Class(
 	Start_Time TIME NOT NULL,
 	End_TIme TIME NOT NULL,
 	Capacity INT NOT NULL,
-	Current Enrollment INT NOT NULL,
+	Current_Enrollment INT NOT NULL,
 	PRIMARY KEY(Name, Start_Day, Grade_Level)
 );
 
 CREATE TABLE Takes(
 	ID INT NOT NULL,
+	Name VARCHAR(255) NOT NULL,
 	Start_Day DATE NOT NULL,
 	Grade_Level INT NOT NULL,
-	Room_Number VARCHAR(255) NOT NULL,
-	Primary Key(ID, Start_Day, Grade_Level, Room_Number),
+	Primary Key(ID, Name, Start_Day, Grade_Level),
 	Foreign Key (Id) REFERENCES USERS(ID),
-	Foreign Key (Start_Day, Grade_Level, Room_Number) References Class (Start_Day, Grade_Level, Room_Number)
+	Foreign Key (Name, Start_Day, Grade_Level) References Class (Name, Start_Day, Grade_Level)
 );
 
 CREATE TABLE Sibling_Link(

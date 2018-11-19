@@ -12,6 +12,7 @@
     <title>Account Update</title>
 
     <?php include("components/header.php"); ?>
+    <?php include("database.php"); ?>
 
 </head>
 
@@ -26,8 +27,9 @@
         <div id="content-wrapper">
 
             <div class="container-fluid">
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
+                <form method="post" action="primary_confirm.php">
+                    
                     <!-- Suffix -->
                     <div class="form-group">
                         <div class="form-row">
@@ -37,10 +39,10 @@
                             <div class="col-md-1">
                                 <select class="form-control" id="suffix" required="required" name="suffix">
                                     <option value="" disabled selected></option>
-                                    <option value="mr">Mr</option>
-                                    <option value="mrs">Mrs</option>
-                                    <option value="ms">Ms</option>
-                                    <option value="dr">Dr</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Dr">Dr</option>
                                 </select>
                             </div>
                         </div>
@@ -53,10 +55,10 @@
                                 <h5>First Name and Middle Initial</h5>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" id="firstName" class="form-control" required="required">
+                                <input type="text" name="firstName" class="form-control" required="required">
                             </div>
                             <div class="col-md-1">
-                                <input type="text" id="middleInitial" class="form-control">
+                                <input type="text" name="middleInitial" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -68,7 +70,7 @@
                                 <h5>Preferred Name</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="preferredName" class="form-control">
+                                <input type="text" name="preferredName" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -80,7 +82,7 @@
                                 <h5>Last Name</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="lastName" class="form-control" required="required">
+                                <input type="text" name="lastName" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -92,7 +94,7 @@
                                 <h5>Address Line 1</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="addressLine1" class="form-control" required="required">
+                                <input type="text" name="addressLine1" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -104,7 +106,7 @@
                                 <h5>Address Line 2</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="addressLine2" class="form-control">
+                                <input type="text" name="addressLine2" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -116,7 +118,7 @@
                                 <h5>City</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="city" class="form-control" required="required">
+                                <input type="text" name="city" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -128,13 +130,13 @@
                                 <h5>State & Zip</h5>
                             </div>
                             <div class="col-md-2">
-                                <select class="form-control" id="state" required="required">
+                                <select class="form-control" name="state" required="required">
                                     <option value="" disabled selected></option>
                                     <option value="Texas">Texas</option>
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" id="zip" class="form-control" required="required">
+                                <input type="text" name="zip" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -146,13 +148,13 @@
                                 <h5>Birthday</h5>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" id="month" class="form-control" required="required">
+                                <input type="text" name="month" class="form-control" required="required">
                             </div>
                             <div class="col-md-1">
-                                <input type="text" id="day" class="form-control" required="required">
+                                <input type="text" name="day" class="form-control" required="required">
                             </div>
                             <div class="col-md-1">
-                                <input type="text" id="year" class="form-control" required="required">
+                                <input type="text" name="year" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -164,12 +166,12 @@
                                 <h5>Gender</h5>
                             </div>
                             <div class="col-md-2">
-                                <select class="form-control" id="gender" required="required">
+                                <select class="form-control" name="gender" required="required">
                                     <option value="" disabled selected></option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                    <option value="prefer">Prefer not to say</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
                                 </select>
                             </div>
                         </div>
@@ -182,15 +184,15 @@
                                 <h5>Race</h5>
                             </div>
                             <div class="col-md-2">
-                                <select class="form-control" id="race" required="required">
+                                <select class="form-control" name="race" required="required">
                                     <option value="" disabled selected></option>
-                                    <option value="indian">American Indian or Alaska Native</option>
-                                    <option value="asian">Asian</option>
-                                    <option value="black">Black or African American</option>
-                                    <option value="hispanic">Hispanic or Latino</option>
-                                    <option value="pacific">Native Hawaiian or Other Pacific Islander</option>
-                                    <option value="white">White</option>
-                                    <option value="prefer">Prefer not to say</option>
+                                    <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
+                                    <option value="Asian">Asian</option>
+                                    <option value="Black or African American">Black or African American</option>
+                                    <option value="Hispanic or Latino">Hispanic or Latino</option>
+                                    <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
+                                    <option value="White">White</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
                                 </select>
                             </div>
                         </div>
@@ -203,24 +205,26 @@
                                 <h5>What kind of school did you go to?</h5>
                             </div>
                             <div class="col-md-2">
-                                <select class="form-control" id="schoolType" required="required">
+                                <select class="form-control" id="schoolType" required="required" name="schoolType">
                                     <option value="" disabled selected></option>
-                                    <option value="public">Public</option>
-                                    <option value="private">Private</option>
-                                    <option value="home">Home-Schooled</option>
+                                    <option value="Public">Public</option>
+                                    <option value="Private">Private</option>
+                                    <option value="Home-Schooled">Home-Schooled</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <!-- School Name -->
-                    <div class="form-group" >
-                        <div class="form-row">
-                            <div class="col-md-2">
-                                <h5>School Name</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" id="schoolName" class="form-control" required="required">
+                    <div class="form-group" id="schoolNameGroup" style="display:none">
+                        <div class="form-group" >
+                            <div class="form-row">
+                                <div class="col-md-2">
+                                    <h5>School Name</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="schoolName" name="schoolName" class="form-control" required="required">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -232,19 +236,36 @@
                                 <h5>School District</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="schoolDistrict" class="form-control">
+                                <input type="text" id="schoolDistrict" name="schoolDistrict" class="form-control">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Grade Level -->
+                    <!-- Grade In Fall -->
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-2">
                                 <h5>Grade Level in Upcoming Fall</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="gradeInFall" class="form-control" required="required">
+                                <input type="text" name="gradeInFall" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GT Status -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-2">
+                                <h5>Have you ever been in a GT Program?</h5>
+                            </div>
+                            <div class="col-md-1">
+                                <select class="form-control" id="gtStatus" required="required" name="gtStatus">
+                                    <option value="" disabled selected></option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="Unsure">Unsure</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -256,9 +277,8 @@
                                 <h5>Graduation Year</h5>
                             </div>
                             <div class="col-md-2">
-                                <select class="form-control" id="gradYear" required="required">
+                                <select class="form-control" id="gradYear" required="required" name="gradYear">
                                     <option value="" disabled selected></option>
-                                    <option value="2018">2018</option>
                                     <option value="2019">2019</option>
                                     <option value="2020">2020</option>
                                     <option value="2021">2021</option>
@@ -268,6 +288,7 @@
                                     <option value="2025">2025</option>
                                     <option value="2026">2026</option>
                                     <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
                                 </select>
                             </div>
                         </div>
@@ -280,7 +301,7 @@
                                 <h5>Expected High School</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="highSchool" class="form-control">
+                                <input type="text" name="highSchool" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -292,7 +313,7 @@
                                 <h5>Email Address</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="email" id="email" class="form-control" required="required">
+                                <input type="email" name="email" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -304,7 +325,7 @@
                                 <h5>Phone Number</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="phoneNumber" class="form-control">
+                                <input type="text" name="phoneNumber" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -323,7 +344,7 @@
                                 <h5>Sibling Name</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="siblingName" class="form-control">
+                                <input type="text" id="siblingName" name="siblingName" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -335,7 +356,7 @@
                                 <h5>Parent/Guardian 1 Name</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="parent1Name" class="form-control" required="required">
+                                <input type="text" name="parent1Name" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -347,7 +368,7 @@
                                 <h5>Address Line 1</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="parent1AddressLine1" class="form-control" required="required">
+                                <input type="text" name="parent1AddressLine1" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -359,7 +380,7 @@
                                 <h5>Address Line 2</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="parent1AddressLine2" class="form-control">
+                                <input type="text" name="parent1AddressLine2" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -371,7 +392,7 @@
                                 <h5>City</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="parent1City" class="form-control" required="required">
+                                <input type="text" name="parent1City" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -383,13 +404,13 @@
                                 <h5>State & Zip</h5>
                             </div>
                             <div class="col-md-2">
-                                <select class="form-control" id="parent1State" required="required">
+                                <select class="form-control" name="parent1State" required="required">
                                     <option value="" disabled selected></option>
                                     <option value="Texas">Texas</option>
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" id="parent1Zip" class="form-control" required="required">
+                                <input type="text" name="parent1Zip" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -401,7 +422,7 @@
                                 <h5>Parent/Guardian 1 Email Address</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="email" id="parent1Email" class="form-control" required="required">
+                                <input type="email" name="parent1Email" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -413,7 +434,7 @@
                                 <h5>Parent/Guardian 1 Phone Number</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="parent1PhoneNumber" class="form-control" required="required">
+                                <input type="text" name="parent1PhoneNumber" class="form-control" required="required">
                             </div>
                         </div>
                     </div>
@@ -434,7 +455,7 @@
                                     <h5>Parent/Guardian 2 Name</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2Name" class="form-control" required="required">
+                                    <input type="text" id="parent2Name" name="parent2Name" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -446,7 +467,7 @@
                                     <h5>Address Line 1</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2AddressLine1" class="form-control" required="required">
+                                    <input type="text" id="parent2AddressLine1" name="parent2AddressLine1" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -458,7 +479,7 @@
                                     <h5>Address Line 2</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2AddressLine2" class="form-control">
+                                    <input type="text" id="parent2AddressLine2" name="parent2AddressLine2" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -470,7 +491,7 @@
                                     <h5>City</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2City" class="form-control" required="required">
+                                    <input type="text" id="parent2City" name="parent2City" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -482,13 +503,13 @@
                                     <h5>State & Zip</h5>
                                 </div>
                                 <div class="col-md-2">
-                                    <select class="form-control" id="parent2State" required="required">
+                                    <select class="form-control" id= "parent2State" name="parent2State">
                                         <option value="" disabled selected></option>
                                     <option value="Texas">Texas</option>
                                     </select>
                                 </div>
                                 <div class="col-md-1">
-                                    <input type="text" id="parent2Zip" class="form-control" required="required">
+                                    <input type="text" id="parent2Zip" name="parent2Zip" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -500,7 +521,7 @@
                                     <h5>Parent/Guardian 2 Email Address</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="email" id="parent2Email" class="form-control" required="required">
+                                    <input type="email" id="parent2Email" name="parent2Email" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -512,14 +533,14 @@
                                     <h5>Parent/Guardian 2 Phone Number</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2PhoneNumber" class="form-control" required="required">
+                                    <input type="text" id="parent2PhoneNumber" name="parent2PhoneNumber" class="form-control">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <input class='btn btn-primary btn-block col-md-3' type='submit' name='next' value='Next'>
 
-                    <input class="btn btn-primary btn-block col-md-3" type="submit" name="submit" value="Submit">  
-                    <!--<a class="btn btn-primary btn-block col-md-3" href="confirm.php">Update</a>-->
                 </form>
 
             </div>
@@ -551,7 +572,6 @@
             if (document.getElementById('parentYes').checked) {
                 document.getElementById('parent').style.display = 'block';
                 document.getElementById('parent2Name').required = 'required';
-                document.getElementById('parent2AddressLine2').required = 'required';
                 document.getElementById('parent2AddressLine1').required = 'required';
                 document.getElementById('parent2City').required = 'required';
                 document.getElementById('parent2State').required = 'required';
@@ -563,7 +583,6 @@
             else {
                 document.getElementById('parent').style.display = 'none';
                 document.getElementById('parent2Name').required = '';
-                document.getElementById('parent2AddressLine2').required = '';
                 document.getElementById('parent2AddressLine1').required = '';
                 document.getElementById('parent2City').required = '';
                 document.getElementById('parent2State').required = '';
@@ -575,11 +594,19 @@
         }
 
         document.getElementById('schoolType').onchange = function() {
-            if(this.value === 'public'){
+            if(this.value === 'Public'){
+                document.getElementById('schoolNameGroup').style.display = 'block';
+                document.getElementById('schoolName').required = 'required';
                 document.getElementById('schoolDistrictGroup').style.display = 'block';
                 document.getElementById('schoolDistrict').required = 'required';
-            }
-            else {
+            } else if(this.value === 'Private'){
+                document.getElementById('schoolNameGroup').style.display = 'block';
+                document.getElementById('schoolName').required = 'required';
+                document.getElementById('schoolDistrictGroup').style.display = 'none';
+                document.getElementById('schoolDistrict').required = '';
+            } else {
+                document.getElementById('schoolNameGroup').style.display = 'none';
+                document.getElementById('schoolName').required = '';
                 document.getElementById('schoolDistrictGroup').style.display = 'none';
                 document.getElementById('schoolDistrict').required = '';
             }

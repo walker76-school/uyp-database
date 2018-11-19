@@ -6,6 +6,12 @@
       <span>Dashboard</span>
     </a>
   </li>
+  <li class="nav-item active">
+    <a class="nav-link" href="admin.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Admin</span>
+    </a>
+  </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <!--<i class="fas fa-fw fa-folder"></i>-->
@@ -22,7 +28,7 @@
     </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="account_info.php">
+    <a class="nav-link" href="primary.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Account Info</span></a>
   </li>
