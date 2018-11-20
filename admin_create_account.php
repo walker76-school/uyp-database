@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Account Update</title>
+    <title>Create Account</title>
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
+    <?php include("admin_validation.php") ?>
 
 </head>
 

@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>Admin Home</title>
 
     <?php include("components/header.php"); ?>
-    <?php include("user_validation.php") ?>
+    <?php include("admin_validation.php") ?>
 
   </head>
 

@@ -9,36 +9,35 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>Access Denied</title>
 
     <?php include("components/header.php"); ?>
-    <?php include("user_validation.php") ?>
 
   </head>
 
   <body id="page-top">
 
-    <?php 
-      include("components/navbar.php");
-    ?>
+    <?php include("components/navbar.php"); ?>
 
     <div id="wrapper">
 
-      <?php 
-        include("components/sidebar.php");
-      ?>
+      <?php include("components/sidebar.php"); ?>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-          <!-- Content goes here -->
+          <!-- Page Content -->
+          <h1 class="display-1">401</h1>
+          <p class="lead">Access denied. You can
+            <a href="javascript:history.back()">go back</a>
+            to the previous page, or
+            <a href="logout.php">return home</a>.</p>
 
         </div>
+        <!-- /.container-fluid -->
 
-        <?php 
-          include("components/footer.php");
-        ?>
+        <?php include("components/footer.php"); ?>
 
       </div>
       <!-- /.content-wrapper -->
@@ -46,9 +45,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <?php 
-      include("components/javascript.php");
-    ?>
+    <?php include("components/javascript.php"); ?>
 
   </body>
 

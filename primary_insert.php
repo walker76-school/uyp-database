@@ -1,7 +1,7 @@
 <?php
     
     include('database.php');
-    include("validation.php");
+    include("user_validation.php");
 
     $suffix;
     $firstName;

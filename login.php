@@ -35,17 +35,24 @@
           $pass = $_POST["pass"];
         }
 
-        $sql = "SELECT * FROM Users WHERE id=" . $user . " AND password='" . $pass . "'";
-        //echo $sql;
-
-        $result = $conn->query($sql);
-        //var_dump($result);
-
-        if ($result && $result->num_rows > 0) {
+        if($user == 'admin' && $pass = 'password'){
             setcookie("validated", $user, time() + (86400 * 30), "/"); // 86400 = 1 day
-            header("Location: index.php");
+            setcookie("type", "admin", time() + (86400 * 30), "/");
+            header("Location: admin_index.php");
         } else {
-            $error = "Invalid Credentials";
+          $sql = "SELECT * FROM Users WHERE id=" . $user . " AND password='" . $pass . "'";
+          //echo $sql;
+
+          $result = $conn->query($sql);
+          //var_dump($result);
+
+          if ($result && $result->num_rows > 0) {
+              setcookie("validated", $user, time() + (86400 * 30), "/"); // 86400 = 1 day
+              setcookie("type", "user", time() + (86400 * 30), "/");
+              header("Location: index.php");
+          } else {
+              $error = "Invalid Credentials";
+          }
         }
 
       }
