@@ -13,6 +13,12 @@
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="admin_look_up_user.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Look up Student</span>
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="logout.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Logout</span>
