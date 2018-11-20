@@ -12,28 +12,68 @@
     <title>Login</title>
 
     <?php include("components/header.php"); ?>
+    <?php include("database.php"); ?>
 
   </head>
 
   <body class="bg-dark">
 
+    <?php
+
+      $error;
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $user;
+        $pass;
+
+        if (!empty($_POST["user"])) {
+          $user = $_POST["user"];
+        }
+
+        if (!empty($_POST["pass"])) {
+          $pass = $_POST["pass"];
+        }
+
+        $sql = "SELECT * FROM Users WHERE id=" . $user . " AND password='" . $pass . "'";
+        //echo $sql;
+
+        $result = $conn->query($sql);
+        //var_dump($result);
+
+        if ($result && $result->num_rows > 0) {
+            setcookie("validated", $user, time() + (86400 * 30), "/"); // 86400 = 1 day
+            header("Location: index.php");
+        } else {
+            $error = "Invalid Credentials";
+        }
+
+      }
+    ?>
+
     <div class="container">
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-          <form>
+          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <?php 
+              if(!empty($error)){
+                echo "<label style='color: red;'>$error</label>";
+              }
+            ?>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">Email address</label>
+                <input type="text" id="inputID" name="user" class="form-control" placeholder="User ID" required="required" autofocus="autofocus">
+                <label for="inputID">User ID</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                <input type="password" id="inputPassword" name="pass" class="form-control" placeholder="Password" required="required">
                 <label for="inputPassword">Password</label>
               </div>
             </div>
+            <!--
             <div class="form-group">
               <div class="checkbox">
                 <label>
@@ -41,13 +81,14 @@
                   Remember Password
                 </label>
               </div>
-            </div>
-            <a class="btn btn-primary btn-block" href="index.php">Login</a>
+            </div>-->
+            <input class='btn btn-primary btn-block col-md-3' type='submit' name='submit' value='Login'>
           </form>
+          <!--
           <div class="text-center">
             <a class="d-block small mt-3" href="register.php">Register an Account</a>
             <a class="d-block small" href="forgot-password.php">Forgot Password?</a>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

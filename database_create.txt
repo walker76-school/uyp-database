@@ -11,7 +11,7 @@ CREATE TABLE USERS (
 CREATE TABLE SECONDARY_USER_INFO (
 	ID int NOT NULL,
 	Suffix VARCHAR(255),
-	First_name VARCHAR(255) NOT NULL,
+	First_Name VARCHAR(255) NOT NULL,
 	Last_Name VARCHAR(255) NOT NULL,
 	Initial CHAR(1),
 	Preferred_Name VARCHAR(255),
@@ -21,16 +21,16 @@ CREATE TABLE SECONDARY_USER_INFO (
 	State VARCHAR(255),
 	Zip VARCHAR(255),
 	Birthday DATE NOT NULL,
-	Gender Enum('male', 'female', 'other', 'prefer') NOT NULL,
+	Gender Enum('Male', 'Female', 'Other', 'Prefer') NOT NULL,
 	Race VARCHAR(255),
 	School_Name VARCHAR(255),
 	School_District VARCHAR(255),
 	Grade_In_Fall INT,
-	GT_Status Enum('yes', 'no', 'unsure'),
+	GT_Status Enum('Yes', 'No', 'Unsure'),
 	Grad_Year INT,
 	High_School VARCHAR(255),
 	Email VARCHAR(25),
-	Phone_Number VARCHAR(10),
+	Phone_Number VARCHAR(12),
 	Sibling_Name VARCHAR(255),
 	Primary Key(ID),
 	Foreign Key(ID) REFERENCES USERS(ID) ON DELETE CASCADE
@@ -83,7 +83,7 @@ CREATE TABLE Mentor(
 CREATE TABLE Class(
 	Name VARCHAR(255) NOT NULL,
 	Start_Day DATE NOT NULL,
-	Grade_Level Enum('4th - 5th Grade', '6th - 8th Grade', '9th - 12th Grade')NOT NULL,
+	Grade_Level Enum('4th - 5th Grade', '6th - 8th Grade', '9th - 12th Grade') NOT NULL,
 	Room_Number VARCHAR(255) NOT NULL,
 	Instructor_Name VARCHAR(255) NOT NULL,
 	Start_Time TIME NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE Takes(
 	ID INT NOT NULL,
 	Name VARCHAR(255) NOT NULL,
 	Start_Day DATE NOT NULL,
-	Grade_Level INT NOT NULL,
+	Grade_Level Enum('4th - 5th Grade', '6th - 8th Grade', '9th - 12th Grade') NOT NULL,
 	Primary Key(ID, Name, Start_Day, Grade_Level),
 	Foreign Key (Id) REFERENCES USERS(ID),
 	Foreign Key (Name, Start_Day, Grade_Level) References Class (Name, Start_Day, Grade_Level)
@@ -110,4 +110,6 @@ CREATE TABLE Sibling_Link(
 	Foreign Key (Primary_ID) REFERENCES Users(ID),
 	Foreign Key (Sibling_ID) REFERENCES Users(ID)
 );
+	
+INSERT INTO USERS VALUES (11111, 'Tester');
 	

@@ -11,9 +11,8 @@
 
     <title>Home</title>
 
-    <?php 
-      include("components/header.php");
-    ?>
+    <?php include("components/header.php"); ?>
+    <?php include("validation.php"); ?>
 
   </head>
 

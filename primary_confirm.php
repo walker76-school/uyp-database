@@ -13,6 +13,7 @@
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
+    <?php include("validation.php") ?>
 
 </head>
 
@@ -60,6 +61,7 @@
                     $parent1Zip;
                     $parent1Email;
                     $parent1PhoneNumber;
+                    $parent1PhoneType;
 
                     $parent2Name;
                     $parent2AddressLine1;
@@ -69,6 +71,7 @@
                     $parent2Zip;
                     $parent2Email;
                     $parent2PhoneNumber;
+                    $parent2PhoneType;
 
                     if (!empty($_POST["suffix"])) {
                         $suffix = $_POST["suffix"];
@@ -268,6 +271,12 @@
                         $parent1PhoneNumber = "-";
                     }
 
+                    if (!empty($_POST["parent1PhoneType"])) {
+                        $parent1PhoneType = $_POST["parent1PhoneType"];
+                    } else {
+                        $parent1PhoneType = "-";
+                    }
+
                     if (!empty($_POST["parent2Name"])) {
                         $parent2Name = $_POST["parent2Name"];
                     } else {
@@ -315,6 +324,13 @@
                     } else {
                         $parent2PhoneNumber = "-";
                     }
+
+                    if (!empty($_POST["parent2PhoneType"])) {
+                        $parent2PhoneType = $_POST["parent2PhoneType"];
+                    } else {
+                        $parent2PhoneType = "-";
+                    }
+                    
                 ?>
 
                 <div class="col-md-4">
@@ -603,6 +619,9 @@
                 <div class="col-md-4">
                     <?php echo "<label>$parent2PhoneType</label>" ?>
                 </div>
+
+                <a class='btn btn-primary btn-block col-md-3' href="primary.php">Go Back</a>
+
 
                 <form method="post" action="primary_insert.php">
                     

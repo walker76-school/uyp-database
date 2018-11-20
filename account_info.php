@@ -14,10 +14,20 @@
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
-
+    <?php include("validation.php") ?>
 </head>
 
 <body id="page-top">
+
+    <?php 
+        $sql = "SELECT * FROM SECONDARY_USER_INFO WHERE id=" . $user ;
+        //echo $sql;
+
+        $result = $conn->query($sql);
+        //var_dump($result);
+        $row = $result->fetch_assoc();
+        //var_dump($row);
+    ?>
 
     <?php include("components/navbar.php"); ?>
 
@@ -29,7 +39,6 @@
 
             <div class="container-fluid">
 
-                
                <?php
                     $suffix;
                     $firstName;
@@ -44,9 +53,9 @@
                     $birthday;
                     $gender;
                     $race;
-                    $schoolType;
                     $schoolName;
                     $schoolDistrict;
+                    $gtStatus;
                     $gradeInFall;
                     $gradYear;
                     $highSchool;
@@ -54,150 +63,134 @@
                     $phoneNumber;
                     $siblingName;
 
-                    if(!empty($_POST["confirm"])){
-                        // TODO - Insert
-                        header('Location: index.php');
-                    }
-                    if (!empty($_POST["suffix"])) {
-                        $suffix = $_POST["suffix"];
+                    if (!empty($row["Suffix"])) {
+                        $suffix = $row["Suffix"];
                     } else {
                         $suffix = "-";
                     }
 
-                    if (!empty($_POST["firstName"])) {
-                        $firstName = $_POST["firstName"];
+                    if (!empty($row["First_Name"])) {
+                        $firstName = $row["First_Name"];
                     } else {
                         $firstName = "-";
                     }
 
-                    if (!empty($_POST["middleInitial"])) {
-                        $middleInitial = $_POST["middleInitial"];
+                    if (!empty($row["Initial"])) {
+                        $middleInitial = $row["Initial"];
                     } else {
                         $middleInitial = "-";
                     }
 
-                    if (!empty($_POST["lastName"])) {
-                        $lastName = $_POST["lastName"];
+                    if (!empty($row["Last_Name"])) {
+                        $lastName = $row["Last_Name"];
                     } else {
                         $lastName = "-";
                     }
 
-                    if (!empty($_POST["preferredName"])) {
-                        $preferredName = $_POST["preferredName"];
+                    if (!empty($row["Preferred_Name"])) {
+                        $preferredName = $row["Preferred_Name"];
                     } else {
                         $preferredName = "-";
                     }
 
-                    if (!empty($_POST["addressLine1"])) {
-                        $addressLine1 = $_POST["addressLine1"];
+                    if (!empty($row["Address_Line_1"])) {
+                        $addressLine1 = $row["Address_Line_1"];
                     } else {
                         $addressLine1 = "-";
                     }
 
-                    if (!empty($_POST["addressLine2"])) {
-                        $addressLine2 = $_POST["addressLine2"];
+                    if (!empty($row["Address_Line_2"])) {
+                        $addressLine2 = $row["Address_Line_2"];
                     } else {
                         $addressLine2 = "-";
                     }
 
-                    if (!empty($_POST["city"])) {
-                        $city = $_POST["city"];
+                    if (!empty($row["City"])) {
+                        $city = $row["City"];
                     } else {
                         $city = "-";
                     }
 
-                    if (!empty($_POST["state"])) {
-                        $state = $_POST["state"];
+                    if (!empty($row["State"])) {
+                        $state = $row["State"];
                     } else {
                         $state = "-";
                     }
 
-                    if (!empty($_POST["zip"])) {
-                        $zip = $_POST["zip"];
+                    if (!empty($row["Zip"])) {
+                        $zip = $row["Zip"];
                     } else {
                         $zip = "-";
                     }
 
-                    if (!empty($_POST["month"])) {
-                        $month = $_POST["month"];
+                    if (!empty($row["Birthday"])) {
+                        $birthday = $row["Birthday"];
                     } else {
-                        $month = "-";
+                        $birthday = "-";
                     }
 
-                    if (!empty($_POST["day"])) {
-                        $day = $_POST["day"];
-                    } else {
-                        $day = "-";
-                    }
-
-                    if (!empty($_POST["year"])) {
-                        $year = $_POST["year"];
-                    } else {
-                        $year = "-";
-                    }
-
-                    if (!empty($_POST["gender"])) {
-                        $gender = $_POST["gender"];
+                    if (!empty($row["Gender"])) {
+                        $gender = $row["Gender"];
                     } else {
                         $gender = "-";
                     }
 
-                    if (!empty($_POST["race"])) {
-                        $race = $_POST["race"];
+                    if (!empty($row["Race"])) {
+                        $race = $row["Race"];
                     } else {
                         $race = "-";
                     }
 
-                    if (!empty($_POST["schoolType"])) {
-                        $schoolType = $_POST["schoolType"];
-                    } else {
-                        $schoolType = "-";
-                    }
-
-                    if (!empty($_POST["schoolName"])) {
-                        $schoolName = $_POST["schoolName"];
+                    if (!empty($row["School_Name"])) {
+                        $schoolName = $row["School_Name"];
                     } else {
                         $schoolName = "-";
                     }
 
-                    if (!empty($_POST["schoolDistrict"])) {
-                        $schoolDistrict = $_POST["schoolDistrict"];
+                    if (!empty($row["School_District"])) {
+                        $schoolDistrict = $row["School_District"];
                     } else {
                         $schoolDistrict = "-";
                     }
 
-                    if (!empty($_POST["gradeInFall"])) {
-                        $gradeInFall = $_POST["gradeInFall"];
+                    if (!empty($row["Grade_In_Fall"])) {
+                        $gradeInFall = $row["Grade_In_Fall"];
                     } else {
                         $gradeInFall = "-";
                     }
 
-                    if (!empty($_POST["gradYear"])) {
-                        $gradYear = $_POST["gradYear"];
+                    if (!empty($row["GT_Status"])) {
+                        $gtStatus = $row["GT_Status"];
+                    } else {
+                        $gtStatus = "-";
+                    }
+
+                    if (!empty($row["Grad_Year"])) {
+                        $gradYear = $row["Grad_Year"];
                     } else {
                         $gradYear = "-";
                     }
 
-                    if (!empty($_POST["highSchool"])) {
-                        $highSchool = $_POST["highSchool"];
+                    if (!empty($row["High_School"])) {
+                        $highSchool = $row["High_School"];
                     } else {
                         $highSchool = "-";
                     }
 
-                    if (!empty($_POST["email"])) {
-                        $email = $_POST["email"];
+                    if (!empty($row["Email"])) {
+                        $email = $row["Email"];
                     } else {
                         $email = "-";
                     }
 
-                    if (!empty($_POST["phoneNumber"])) {
-                        $phoneNumber = $_POST["phoneNumber"];
+                    if (!empty($row["Phone_Number"])) {
+                        $phoneNumber = $row["Phone_Number"];
                     } else {
                         $phoneNumber = "-";
                     }
 
-                    if (!empty($_POST["siblingName"])) {
-                        $siblingName = $_POST["siblingName"];
+                    if (!empty($row["Sibling_Name"])) {
+                        $siblingName = $row["Sibling_Name"];
                     } else {
                         $siblingName = "-";
                     }
@@ -277,7 +270,7 @@
                     <h5>Birthday</h5>
                 </div>
                 <div class="col-md-4">
-                    <?php echo "<label>$month / $day / $year</label>" ?>
+                    <?php echo "<label>$birthday</label>" ?>
                 </div>
 
                 <div class="col-md-4">
@@ -293,13 +286,13 @@
                 <div class="col-md-4">
                     <?php echo "<label>$race</label>" ?>
                 </div>
-
+<!--
                 <div class="col-md-4">
                     <h5>What kind of school did you go to?</h5>
                 </div>
                 <div class="col-md-4">
-                    <?php echo "<label>$schoolType</label>" ?>
-                </div>
+                    <?php //echo "<label>$schoolType</label>" ?>
+                </div>-->
 
                 <div class="col-md-4">
                     <h5>School Name</h5>
@@ -313,6 +306,13 @@
                 </div>
                 <div class="col-md-4">
                     <?php echo "<label>$schoolDistrict</label>" ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>GT Status</h5>
+                </div>
+                <div class="col-md-4">
+                    <?php echo "<label>$gtStatus</label>" ?>
                 </div>
 
                 <div class="col-md-4">

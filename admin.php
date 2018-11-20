@@ -18,25 +18,29 @@
 
 <?php
 
-    $user = generateRandomUser();
+    $user = generateRandomUser(5);
     $pass = generateRandomPass();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["back"])) {
             $loc = htmlspecialchars($_SERVER["PHP_SELF"]);
             header('Location:' . $loc);
-        }
+        } else {
 
-        if (isset($_POST["user"])) {
-            $user = $_POST["user"];
-        }
+            if (isset($_POST["user"])) {
+                $user = $_POST["user"];
+            }
 
-        if (isset($_POST["pass"])) {
-            $pass = $_POST["pass"];
-        }
+            if (isset($_POST["pass"])) {
+                $pass = $_POST["pass"];
+            }
 
-        $query = "INSERT INTO primary VALUES (" . $user . ", " . $pass . ");";
-        echo $query;
+            // TODO - Hash password
+
+            $query = "INSERT INTO USERS VALUES (" . $user . ", '" . $pass . "');";
+            $conn->query($query);
+            echo $query;
+        }
     }
     
 ?>
