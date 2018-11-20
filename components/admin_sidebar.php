@@ -19,6 +19,12 @@
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="admin_student_directory.php">
+      <!--<i class="fas fa-fw fa-chart-area"></i>-->
+      <span>Student Directory</span>
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="logout.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Logout</span>
