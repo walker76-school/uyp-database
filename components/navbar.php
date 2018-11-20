@@ -1,16 +1,12 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-  <a class="navbar-brand mr-1" href="index.html">University for Young People</a>
-
-  <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-    <i class="fas fa-bars"></i>
-  </button>
+  <a class="navbar-brand mr-1" href="index.php">University for Young People</a>
 
   <!-- Padding for left icons -->
   <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
   </div>
 
-  <!-- Navbar -->
+  <!-- Navbar 
   <ul class="navbar-nav ml-auto ml-md-0">
     <li class="nav-item dropdown no-arrow mx-1">
       <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,6 +43,6 @@
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
       </div>
     </li>
-  </ul>
+  </ul>-->
 
 </nav>
