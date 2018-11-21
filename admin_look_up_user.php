@@ -55,7 +55,7 @@
         $result = $conn->query($sql);
         //var_dump($result);
 
-        if($result){
+        if($result && mysqli_num_rows($result) > 0){
             $row = $result->fetch_assoc();
             //var_dump($row);
 

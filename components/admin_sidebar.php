@@ -19,6 +19,12 @@
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="admin_edit_user.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Edit Student</span>
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="admin_student_directory.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Student Directory</span>
