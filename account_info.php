@@ -286,13 +286,21 @@
                 <div class="col-md-4">
                     <?php echo "<label>$race</label>" ?>
                 </div>
-<!--
+                
                 <div class="col-md-4">
-                    <h5>What kind of school did you go to?</h5>
+                    <h5>School Type</h5>
                 </div>
                 <div class="col-md-4">
-                    <?php //echo "<label>$schoolType</label>" ?>
-                </div>-->
+                    <?php 
+                        if(empty($row['School_Name']) && empty($row['School_District'])){
+                            echo "<label>Home-Schooled</label>" ;
+                        } else if(empty($row['School_Name']) && !empty($row['School_District'])){
+                            echo "<label>Private</label>" ;
+                        } else {
+                            echo "<label>Public</label>";
+                        }
+                    ?>
+                </div>
 
                 <div class="col-md-4">
                     <h5>School Name</h5>

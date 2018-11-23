@@ -40,12 +40,11 @@ CREATE TABLE ADMIN_USER_INFO (
 	ID int NOT NULL,
 	Year_Accepted INT,
 	Grade_Accepted INT,
-	Enrollment_Status VARCHAR(255),
+	Enrollment_Status Enum('Active', 'Not Interested', 'Moved Away', 'Graduated'),
 	Grant_Status VARCHAR(255),
 	Disability VARCHAR(255),
 	Health VARCHAR(255),
 	ELL BOOLEAN,
-	GT_INFO BOOLEAN,
 	Additional_Info VARCHAR(255),
 	Primary Key(ID),
 	Foreign Key(ID) REFERENCES USERS(ID) ON DELETE CASCADE

@@ -20,7 +20,7 @@
 <body id="page-top">
 
     <?php 
-        $user;
+        $id = "";
         $suffix = "";
         $firstName = "";
         $middleInitial = "";
@@ -49,10 +49,14 @@
         $error;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $user = $_POST['user'];
+            $id = $_POST['id'];
         }
 
-        $sql = "SELECT * FROM SECONDARY_USER_INFO WHERE id=" . $user ;
+        $checkUserSql = "SELECT * FROM USERS WHERE id=" . $id ;
+        $checkUserResult = $conn->query($checkUserSql);
+        //var_dump($checkUserResult);
+
+        $sql = "SELECT * FROM SECONDARY_USER_INFO WHERE id=" . $id ;
         //echo $sql;
 
         $result = $conn->query($sql);
@@ -60,7 +64,7 @@
 
         if($result && mysqli_num_rows($result) > 0){
             $row = $result->fetch_assoc();
-            var_dump($row);
+            //var_dump($row);
 
             if (!empty($row["Suffix"])) {
                 $suffix = $row["Suffix"];
@@ -155,7 +159,10 @@
 
             $error = "";
         } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $error = "User not found";
+            //var_dump($checkUserResult);
+            if(!$checkUserResult || mysqli_num_rows($checkUserResult) <= 0){
+                $error = "User not found";
+            }
         }
     ?>
 
@@ -176,7 +183,7 @@
                     <!-- User -->
                     <div class="form-group">
                       <div class="form-label-group">
-                         <input type="text" id="inputID" name="user" class="form-control" placeholder="User ID" required="required">
+                         <input type="text" id="inputID" name="id" class="form-control" placeholder="User ID" required="required">
                         <label for="inputID">User ID</label>
                       </div>
                     </div>
@@ -199,6 +206,10 @@
                 ?>
 
                 <form action='insert_secondary.php' method='post'>
+
+                    <!-- ID -->
+                    <input type="hidden" name="id" class="form-control" required="required" value="<?php echo $id ?>">
+
                     <!-- Suffix -->
                     <div class="form-group">
                         <div class="form-row">
@@ -317,13 +328,13 @@
                                 <h5>Birthday</h5>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="month" class="form-control" length=2 value=<?php echo $month ?> required="required">
+                                <input type="text" name="month" class="form-control" length=2 required="required" value=<?php echo $month ?> >
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="day" class="form-control" length=2 value=<?php echo $day ?> required="required">
+                                <input type="text" name="day" class="form-control" length=2 required="required" value=<?php echo $day ?> >
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="year" class="form-control" length=4 value=<?php echo $year ?> required="required">
+                                <input type="text" name="year" class="form-control" length=4 required="required" value=<?php echo $year ?> >
                             </div>
                         </div>
                     </div>

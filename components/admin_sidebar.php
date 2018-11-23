@@ -21,7 +21,13 @@
   <li class="nav-item">
     <a class="nav-link" href="admin_edit_secondary.php">
       <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
-      <span>Edit Student</span>
+      <span>Edit Student Info</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="admin_edit_admin_info.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Edit Admin Info</span>
     </a>
   </li>
   <li class="nav-item">

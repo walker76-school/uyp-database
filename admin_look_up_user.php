@@ -20,36 +20,48 @@
 <body id="page-top">
 
     <?php 
-        $user;
-        $suffix = "";
-        $firstName = "";
-        $middleInitial = "";
-        $lastName = "";
-        $preferredName = "";
-        $addressLine1 = "";
-        $addressLine2 = "";
-        $city = "";
-        $state = "";
-        $zip = "";
-        $birthday = "";
-        $gender = "";
-        $race = "";
-        $schoolName = "";
-        $schoolDistrict = "";
-        $gtStatus = "";
-        $gradeInFall = "";
-        $gradYear = "";
-        $highSchool = "";
-        $email = "";
-        $phoneNumber = "";
-        $siblingName = "";
+        $id = "";
+        $suffix = "-";
+        $firstName = "-";
+        $middleInitial = "-";
+        $lastName = "-";
+        $preferredName = "-";
+        $addressLine1 = "-";
+        $addressLine2 = "-";
+        $city = "-";
+        $state = "-";
+        $zip = "-";
+        $birthday = "-";
+        $gender = "-";
+        $race = "-";
+        $schoolName = "-";
+        $schoolDistrict = "-";
+        $gtStatus = "-";
+        $gradeInFall = "-";
+        $gradYear = "-";
+        $highSchool = "-";
+        $email = "-";
+        $phoneNumber = "-";
+        $siblingName = "-";
+        $yearAccepted = "-";
+        $gradeAccepted = "-";
+        $enrollmentStatus = "-";
+        $grantStatus = "-";
+        $disability = "-";
+        $health = "-";
+        $ell = "-";
+        $additional = "-";
         $error;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $user = $_POST['user'];
+            $id = $_POST['user'];
         }
 
-        $sql = "SELECT * FROM SECONDARY_USER_INFO WHERE id=" . $user ;
+        $checkUserSql = "SELECT * FROM USERS WHERE id=" . $id ;
+        $checkUserResult = $conn->query($checkUserSql);
+        //var_dump($checkUserResult);
+
+        $sql = "SELECT * FROM SECONDARY_USER_INFO LEFT JOIN ADMIN_USER_INFO ON SECONDARY_USER_INFO.ID = ADMIN_USER_INFO.ID WHERE SECONDARY_USER_INFO.ID=" . $id ;
         //echo $sql;
 
         $result = $conn->query($sql);
@@ -61,138 +73,131 @@
 
             if (!empty($row["Suffix"])) {
                 $suffix = $row["Suffix"];
-            } else {
-                $suffix = "-";
             }
 
             if (!empty($row["First_Name"])) {
                 $firstName = $row["First_Name"];
-            } else {
-                $firstName = "-";
             }
 
             if (!empty($row["Initial"])) {
                 $middleInitial = $row["Initial"];
-            } else {
-                $middleInitial = "-";
             }
 
             if (!empty($row["Last_Name"])) {
                 $lastName = $row["Last_Name"];
-            } else {
-                $lastName = "-";
             }
 
             if (!empty($row["Preferred_Name"])) {
                 $preferredName = $row["Preferred_Name"];
-            } else {
-                $preferredName = "-";
             }
 
             if (!empty($row["Address_Line_1"])) {
                 $addressLine1 = $row["Address_Line_1"];
-            } else {
-                $addressLine1 = "-";
             }
 
             if (!empty($row["Address_Line_2"])) {
                 $addressLine2 = $row["Address_Line_2"];
-            } else {
-                $addressLine2 = "-";
             }
 
             if (!empty($row["City"])) {
                 $city = $row["City"];
-            } else {
-                $city = "-";
             }
 
             if (!empty($row["State"])) {
                 $state = $row["State"];
-            } else {
-                $state = "-";
             }
 
             if (!empty($row["Zip"])) {
                 $zip = $row["Zip"];
-            } else {
-                $zip = "-";
             }
 
             if (!empty($row["Birthday"])) {
                 $birthday = $row["Birthday"];
-            } else {
-                $birthday = "-";
             }
 
             if (!empty($row["Gender"])) {
                 $gender = $row["Gender"];
-            } else {
-                $gender = "-";
             }
 
             if (!empty($row["Race"])) {
                 $race = $row["Race"];
-            } else {
-                $race = "-";
             }
 
             if (!empty($row["School_Name"])) {
                 $schoolName = $row["School_Name"];
-            } else {
-                $schoolName = "-";
             }
 
             if (!empty($row["School_District"])) {
                 $schoolDistrict = $row["School_District"];
-            } else {
-                $schoolDistrict = "-";
             }
 
             if (!empty($row["Grade_In_Fall"])) {
                 $gradeInFall = $row["Grade_In_Fall"];
-            } else {
-                $gradeInFall = "-";
             }
 
             if (!empty($row["GT_Status"])) {
                 $gtStatus = $row["GT_Status"];
-            } else {
-                $gtStatus = "-";
             }
 
             if (!empty($row["Grad_Year"])) {
                 $gradYear = $row["Grad_Year"];
-            } else {
-                $gradYear = "-";
             }
 
             if (!empty($row["High_School"])) {
                 $highSchool = $row["High_School"];
-            } else {
-                $highSchool = "-";
             }
 
             if (!empty($row["Email"])) {
                 $email = $row["Email"];
-            } else {
-                $email = "-";
             }
 
             if (!empty($row["Phone_Number"])) {
                 $phoneNumber = $row["Phone_Number"];
-            } else {
-                $phoneNumber = "-";
-            }
+            } 
 
             if (!empty($row["Sibling_Name"])) {
                 $siblingName = $row["Sibling_Name"];
-            } else {
-                $siblingName = "-";
             }
+
+            if (!empty($row["Year_Accepted"])) {
+                $yearAccepted = $row["Year_Accepted"];
+            }
+
+            if (!empty($row["Grade_Accepted"])) {
+                $gradeAccepted = $row["Grade_Accepted"];
+            }
+
+            if (!empty($row["Enrollment_Status"])) {
+                $enrollmentStatus = $row["Enrollment_Status"];
+            }
+
+            if (!empty($row["Grant_Status"])) {
+                $grantStatus = $row["Grant_Status"];
+            }
+
+            if (!empty($row["Disability"])) {
+                $disability = $row["Disability"];
+            }
+
+            if (!empty($row["Health"])) {
+                $health = $row["Health"];
+            }
+
+            if ($row["ELL"]) {
+                $ell = 'Yes';
+            } else {
+                $ell = 'No';
+            }
+
+            if (!empty($row["Additional_Info"])) {
+                $additional = $row["Additional_Info"];
+            }
+
             $error = "";
         } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $error = "User not found";
+            if(!$checkUserResult || mysqli_num_rows($checkUserResult) <= 0){
+                $error = "User not found";
+            }
         }
     ?>
 
@@ -327,6 +332,21 @@
                     </div>
 
                     <div class="col-md-4">
+                        <h5>School Type</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php 
+                            if(empty($row['School_Name']) && empty($row['School_District'])){
+                                echo "<label>Home-Schooled</label>" ;
+                            } else if(empty($row['School_Name']) && !empty($row['School_District'])){
+                                echo "<label>Private</label>" ;
+                            } else {
+                                echo "<label>Public</label>";
+                            }
+                        ?>
+                    </div>
+
+                    <div class="col-md-4">
                         <h5>School Name</h5>
                     </div>
                     <div class="col-md-4">
@@ -388,6 +408,70 @@
                     <div class="col-md-4">
                         <?php echo "<label>$siblingName</label>" ?>
                     </div>
+
+                    <div class="col-md-4">
+                        <h5>Year Accepted</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$yearAccepted</label>" ?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Grade Accepted</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$gradeAccepted</label>" ?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Enrollment Status</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$enrollmentStatus</label>" ?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Grant Funded?</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo strcmp($grantStatus, "-") ? "<label>Yes</label>" : "<label>No</label>"?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Grant Name</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$grantStatus</label>" ?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Disability</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$disability</label>" ?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Health</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$health</label>" ?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>English Language Learner?</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$ell</label>" ?>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Additional Information</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo "<label>$additional</label>" ?>
+                    </div>
+
                 </div>
 
             </div>
