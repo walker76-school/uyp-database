@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Create Account</title>
+    <title>Create User Account</title>
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>

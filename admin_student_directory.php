@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Account Information</title>
+    <title>User Directory</title>
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>

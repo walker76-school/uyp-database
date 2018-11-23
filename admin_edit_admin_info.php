@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Information</title>
+    <title>Edit User Admin Information</title>
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
@@ -99,8 +99,8 @@
         <div id="content-wrapper">
 
             <div class="container-fluid">
-                <h3>Look up student</h3>
-                <p>Please enter a user's id, which can be found in the student directory, to look up information on that student.</p>
+                <h3>Edit Admin Info</h3>
+                <p>Please enter a user's id, which can be found in the student directory, to edit the admin info for that student.</p>
 
                 <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method='post'>
 
