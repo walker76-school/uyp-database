@@ -13,7 +13,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="primary.php">
+    <a class="nav-link" href="secondary.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Update Account</span>
     </a>

@@ -19,7 +19,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="admin_edit_user.php">
+    <a class="nav-link" href="admin_edit_secondary.php">
       <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
       <span>Edit Student</span>
     </a>
@@ -28,6 +28,12 @@
     <a class="nav-link" href="admin_student_directory.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Student Directory</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="admin_mentors.php">
+      <!--<i class="fas fa-fw fa-chart-area"></i>-->
+      <span>Student Mentors</span>
     </a>
   </li>
   <li class="nav-item">

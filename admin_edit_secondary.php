@@ -32,6 +32,9 @@
         $state = "";
         $zip = "";
         $birthday = "";
+        $day = "";
+        $month = "";
+        $year = "";
         $gender = "";
         $race = "";
         $schoolName = "";
@@ -101,6 +104,9 @@
 
             if (!empty($row["Birthday"])) {
                 $birthday = $row["Birthday"];
+                $day = substr($birthday, 8);
+                $month = substr($birthday, 5, 2);
+                $year = substr($birthday, 0, 4);
             }
 
             if (!empty($row["Gender"])) {
@@ -192,6 +198,7 @@
                     }
                 ?>
 
+                <form action='insert_secondary.php' method='post'>
                     <!-- Suffix -->
                     <div class="form-group">
                         <div class="form-row">
@@ -220,7 +227,7 @@
                                 <input type="text" name="firstName" class="form-control" required="required" value="<?php echo $firstName ?>">
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="middleInitial" class="form-control" value=<?php echo $middleInitial ?>>
+                                <input type="text" name="middleInitial" class="form-control" length=1 value=<?php echo $middleInitial ?>>
                             </div>
                         </div>
                     </div>
@@ -298,7 +305,7 @@
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="zip" class="form-control" required="required" value=<?php echo $zip ?>>
+                                <input type="text" name="zip" class="form-control" required="required" length=5 value=<?php echo $zip ?>>
                             </div>
                         </div>
                     </div>
@@ -310,13 +317,13 @@
                                 <h5>Birthday</h5>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="month" class="form-control" required="required">
+                                <input type="text" name="month" class="form-control" length=2 value=<?php echo $month ?> required="required">
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="day" class="form-control" required="required">
+                                <input type="text" name="day" class="form-control" length=2 value=<?php echo $day ?> required="required">
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="year" class="form-control" required="required">
+                                <input type="text" name="year" class="form-control" length=4 value=<?php echo $year ?> required="required">
                             </div>
                         </div>
                     </div>
@@ -763,6 +770,8 @@
                             </div>
                         </div>
                     </div>
+                    <input class='btn btn-primary btn-block col-md-3' type='submit' name='submit' value='Submit'>
+                </form>
                 </div>
 
             </div>
