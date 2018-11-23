@@ -12,6 +12,7 @@
     <title>Home</title>
 
     <?php include("components/header.php"); ?>
+    <?php include("user_validation.php") ?>
 
   </head>
 
@@ -23,28 +24,15 @@
 
     <div id="wrapper">
 
+      <?php 
+        include("components/sidebar.php");
+      ?>
+
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-          <?php
-            $user_cookie = "validated";
-            $type_cookie = "type";
-            if(isset($_COOKIE[$user_cookie]) && isset($_COOKIE[$type_cookie])){
-              $type = $_COOKIE[$type_cookie];
-              if($type == 'admin'){
-                header("Location: admin_index.php");
-              } else if ($type == 'user'){
-                header("Location: user_index.php");
-              } else {
-                unset($_COOKIE[$type_cookie]);
-                setcookie($type_cookie, '', time() - 3600, '/'); // empty value and old timestamp
-                header("Location: login.php");
-              }
-            } else {
-              header("Location: login.php");
-            }
-          ?>
+          <!-- Content goes here -->
 
         </div>
 

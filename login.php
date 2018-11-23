@@ -49,7 +49,7 @@
           if ($result && $result->num_rows > 0) {
               setcookie("validated", $user, time() + (86400 * 30), "/"); // 86400 = 1 day
               setcookie("type", "user", time() + (86400 * 30), "/");
-              header("Location: index.php");
+              header("Location: user_index.php");
           } else {
               $error = "Invalid Credentials";
           }

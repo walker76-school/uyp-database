@@ -1,6 +1,6 @@
 <?php
 	$user_cookie = "validated";
-	$type_cookie = "validated";
+	$type_cookie = "type";
 
 	if (isset($_COOKIE[$user_cookie])) {
 	    unset($_COOKIE[$user_cookie]);
