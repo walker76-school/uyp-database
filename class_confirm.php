@@ -47,37 +47,37 @@
 				}
 				
 				if (!empty($_POST["grade_level"])) {
-					$start_day = $_POST["grade_level"];
+					$grade_level = $_POST["grade_level"];
 				} else {
 					$grade_level = "-";
 				}
 				
 				if (!empty($_POST["room_number"])) {
-					$start_day = $_POST["room_number"];
+					$room_number = $_POST["room_number"];
 				} else {
 					$room_number = "-";
 				}
 				
 				if (!empty($_POST["building"])) {
-					$start_day = $_POST["building"];
+					$building = $_POST["building"];
 				} else {
 					$building = "-";
 				}
 				
 				if (!empty($_POST["instructor"])) {
-					$start_day = $_POST["instructor"];
+					$instructor = $_POST["instructor"];
 				} else {
 					$instructor = "-";
 				}
 				
 				if (!empty($_POST["capacity"])) {
-					$start_day = $_POST["capacity"];
+					$capacity = $_POST["capacity"];
 				} else {
 					$capacity = "-";
 				}
 				
 				if (!empty($_POST["current_enrollment"])) {
-					$start_day = $_POST["current_enrollment"];
+					$current_enrollment = $_POST["current_enrollment"];
 				} else {
 					$current_enrollment = "-";
 				}
