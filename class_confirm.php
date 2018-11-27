@@ -13,6 +13,8 @@
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
+	<?php include("admin_validation.php"); ?>
+
 
 </head>
 
