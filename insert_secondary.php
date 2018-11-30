@@ -297,8 +297,8 @@
     echo $stmt;
 
     if ($conn->query($stmt) === TRUE) {
-        //header('Location: index.php');
-        echo "Success";
+        header('Location: index.php');
+        //echo "Success";
     } else {
         echo "Error: " . $stmt . "<br>" . $conn->error;
     }

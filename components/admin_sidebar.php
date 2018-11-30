@@ -55,6 +55,12 @@
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="admin_registration.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Registration</span>
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="logout.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Logout</span>

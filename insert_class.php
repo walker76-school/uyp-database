@@ -133,7 +133,7 @@
     echo $stmt;
 
 	if ($conn->query($stmt) === TRUE) {
-        header('Location: admin_index.php');
+        header('Location: index.php');
     } else {
         echo "Error: " . $stmt . "<br>" . $conn->error;
     }

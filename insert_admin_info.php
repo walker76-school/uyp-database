@@ -53,7 +53,7 @@
     $stmt = 'INSERT INTO ADMIN_USER_INFO (ID, Year_Accepted, Grade_Accepted, Enrollment_Status, Grant_Status, Disability, Health, ELL, Additional_Info) VALUES (' . $user . ', ' . $yearAccepted  . ', ' . $gradeAccepted . ', ' . $enrollmentStatus . ', ' . $grantStatus . ', ' . $disability . ', ' . $health . ', ' . $ell . ', ' . $additionalInfo . ');' ; // ON DUPLICATE KEY UPDATE ;
 
     if ($conn->query($stmt) === TRUE) {
-        header('Location: admin_index.php');
+        header('Location: index.php');
     } else {
         echo "Error: " . $stmt . "<br>" . $conn->error;
     }

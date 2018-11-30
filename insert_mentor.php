@@ -25,7 +25,6 @@
         $mentorName = 'NULL';
     }
 
-
     $stmt = 'INSERT INTO MENTOR (ID, Year, Name) VALUES (' . $user . ', ' . $year . ', ' . $mentorName . ');' ; // ON DUPLICATE KEY UPDATE ;
 
     if ($conn->query($stmt) === TRUE) {
