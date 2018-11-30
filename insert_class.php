@@ -3,13 +3,17 @@
 
     $crn = generateRandomCrn();
 	$name;
-	$start_day;
 	$grade_level;
 	$room_number;
 	$building;
 	$instructor;
-	$start_time;
-	$end_time;
+    $start_day;
+	$start_hour;
+    $start_minute;
+    $start_period;
+	$end_hour;
+    $end_minute;
+    $end_period;
 	$capacity;
 	$current_enrollment;
 
@@ -84,6 +88,15 @@
     } else {
         $start_minute = 'NULL';
     }
+
+    if (!empty($_POST["start_period"])) {
+        $start_period = $_POST["start_period"];
+        if(strcmp($start_period, "PM") == 0 && $start_hour != 12){
+            $start_hour += 12;
+        } else if (strcmp($start_period, "AM") == 0 && $start_hour == 12){
+            $start_hour = 0;
+        }
+    }
 	
 	if (!empty($_POST["end_hour"])) {
         $end_hour = $_POST["end_hour"];
@@ -96,13 +109,29 @@
     } else {
         $end_minute = 'NULL';
     }
+
+    if (!empty($_POST["end_period"])) {
+        $end_period = $_POST["end_period"];
+        if(strcmp($end_period, "PM") == 0 && $end_hour != 12){
+            $end_hour += 12;
+        } else if (strcmp($end_period, "AM") == 0 && $end_hour == 12){
+            $end_hour = 0;
+        }
+    }
+
+    if (!empty($_POST["capacity"])) {
+        $capacity = $_POST["capacity"];
+    } else {
+        $capacity = '0';
+    }
 	
 	$start_day = "\"" . $year . "-" . $month . "-" . $day . "\"";
 	$start_time = "\"" . $start_hour . ":" . $start_minute . "\"";
 	$end_time = "\"" . $end_hour . ":" . $end_minute . "\"";
 
-	
-	$stmt = 'INSERT INTO Class (CRN, Name, Start_Day, Grade_Level, Room_Number, Instructor_Name, Start_Time, End_Time, Capacity, Current_Enrollment) VALUES (' . $crn, . ', ' . $name . ', ' . $start_day . ', ' . $grade_level . ', ' . $room_number . ', ' . $building . ', ' . $instructor . ', ' . $start_time . ', ' . $end_time . ', ' . $capacity . ', ' . $current_enrollment . ');' ; // ON DUPLICATE KEY UPDATE ;
+	$stmt = 'INSERT INTO Class (CRN, Name, Grade_Level, Building, Room_Number, Instructor_Name, Start_Day, Start_Time, End_Time, Capacity, Current_Enrollment) VALUES (' . $crn . ', ' . $name . ', ' . $grade_level . ', ' . $building . ', ' . $room_number . ', ' . $instructor . ', ' . $start_day . ', ' . $start_time . ', ' . $end_time . ', ' . $capacity . ', 0);' ; // ON DUPLICATE KEY UPDATE ;
+    echo $stmt;
+
 	if ($conn->query($stmt) === TRUE) {
         header('Location: admin_index.php');
     } else {

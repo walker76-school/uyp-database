@@ -82,12 +82,13 @@ CREATE TABLE Mentor(
 CREATE TABLE Class(
 	CRN INT NOT NULL,
 	Name VARCHAR(255) NOT NULL,
-	Start_Day DATE NOT NULL,
 	Grade_Level Enum('4th - 5th Grade', '6th - 8th Grade', '9th - 12th Grade') NOT NULL,
+	Building VARCHAR(255) NOT NULL,
 	Room_Number VARCHAR(255) NOT NULL,
 	Instructor_Name VARCHAR(255) NOT NULL,
+	Start_Day DATE NOT NULL,
 	Start_Time TIME NOT NULL,
-	End_TIme TIME NOT NULL,
+	End_Time TIME NOT NULL,
 	Capacity INT NOT NULL,
 	Current_Enrollment INT NOT NULL,
 	PRIMARY KEY(CRN)
