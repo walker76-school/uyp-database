@@ -55,7 +55,8 @@
                       <th>Building</th>
                       <th>Room Number</th>
                       <th>Instructor</th>
-                      <th>Start Day</th>
+                      <th>Session</th>
+                      <th>Year</th>
                       <th>Start Time</th>
                       <th>End Time</th>
                       <th>Current Enrollment</th>
@@ -70,7 +71,8 @@
                       <th>Building</th>
                       <th>Room Number</th>
                       <th>Instructor</th>
-                      <th>Start Day</th>
+                      <th>Session</th>
+                      <th>Year</th>
                       <th>Start Time</th>
                       <th>End Time</th>
                       <th>Current Enrollment</th>
@@ -88,7 +90,8 @@
                         echo "<td>", !empty($row['Building']) ? $row['Building'] : "-", "</td>";
                         echo "<td>", !empty($row['Room_Number']) ? $row['Room_Number'] : "-", "</td>";
                         echo "<td>", !empty($row['Instructor_Name']) ? $row['Instructor_Name'] : "-", "</td>";
-                        echo "<td>", !empty($row['Start_Day']) ? $row['Start_Day'] : "-", "</td>";
+                        echo "<td>", !empty($row['Session']) ? $row['Session'] : "-", "</td>";
+                        echo "<td>", !empty($row['Year']) ? $row['Year'] : "-", "</td>";
                         echo "<td>", !empty($row['Start_Time']) ? $row['Start_Time'] : "-", "</td>";
                         echo "<td>", !empty($row['End_Time']) ? $row['End_Time'] : "-", "</td>";
                         echo "<td>", !empty($row['Current_Enrollment']) ? $row['Current_Enrollment'] : "-", "</td>";

@@ -7,7 +7,8 @@
 	$room_number;
 	$building;
 	$instructor;
-    $start_day;
+    $session;
+    $year;
 	$start_hour;
     $start_minute;
     $start_period;
@@ -59,16 +60,10 @@
         $current_enrollment = 'NULL';
     }
 	
-	if (!empty($_POST["month"])) {
-        $month = $_POST["month"];
+	if (!empty($_POST["session"])) {
+        $session = "\"" . $_POST["session"] . "\"";
     } else {
-        $month = 'NULL';
-    }
-
-    if (!empty($_POST["day"])) {
-        $day = $_POST["day"];
-    } else {
-        $day = 'NULL';
+        $session = 'NULL';
     }
 
     if (!empty($_POST["year"])) {
@@ -124,13 +119,11 @@
     } else {
         $capacity = '0';
     }
-	
-	$start_day = "\"" . $year . "-" . $month . "-" . $day . "\"";
+
 	$start_time = "\"" . $start_hour . ":" . $start_minute . "\"";
 	$end_time = "\"" . $end_hour . ":" . $end_minute . "\"";
 
-	$stmt = 'INSERT INTO Class (CRN, Name, Grade_Level, Building, Room_Number, Instructor_Name, Start_Day, Start_Time, End_Time, Capacity, Current_Enrollment) VALUES (' . $crn . ', ' . $name . ', ' . $grade_level . ', ' . $building . ', ' . $room_number . ', ' . $instructor . ', ' . $start_day . ', ' . $start_time . ', ' . $end_time . ', ' . $capacity . ', 0);' ; // ON DUPLICATE KEY UPDATE ;
-    echo $stmt;
+	$stmt = 'INSERT INTO Class (CRN, Name, Grade_Level, Building, Room_Number, Instructor_Name, Session, Year, Start_Time, End_Time, Capacity, Current_Enrollment) VALUES (' . $crn . ', ' . $name . ', ' . $grade_level . ', ' . $building . ', ' . $room_number . ', ' . $instructor . ', ' . $session . ', ' . $year . ', ' . $start_time . ', ' . $end_time . ', ' . $capacity . ', 0);' ; // ON DUPLICATE KEY UPDATE ;
 
 	if ($conn->query($stmt) === TRUE) {
         header('Location: index.php');

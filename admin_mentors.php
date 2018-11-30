@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-md-2">
                        <select class="form-control" required="required" name="year">
-                          <option value="" disabled selected></option>
+                          <option value="" disabled selected>Year</option>
                           <option value="2018">2018</option>
                           <option value="2019">2019</option>
                           <option value="2020">2020</option>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="col-md-2">
                        <select class="form-control" required="required" name="year">
-                          <option value="" disabled selected></option>
+                          <option value="" disabled selected>Year</option>
                           <option value="2018">2018</option>
                           <option value="2019">2019</option>
                           <option value="2020">2020</option>

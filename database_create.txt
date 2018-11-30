@@ -73,7 +73,7 @@ CREATE TABLE Parent_To_Student (
 
 CREATE TABLE Mentor(
 	ID Int NOT NULL,
-	Year Int Not NULL,
+	Year INT NOT NULL,
 	Name VARCHAR(255) NOT NULL,
 	Primary Key(ID, Year, Name),
 	FOREIGN KEY(ID) REFERENCES USERS(ID)
@@ -86,7 +86,8 @@ CREATE TABLE Class(
 	Building VARCHAR(255) NOT NULL,
 	Room_Number VARCHAR(255) NOT NULL,
 	Instructor_Name VARCHAR(255) NOT NULL,
-	Start_Day DATE NOT NULL,
+	Session Enum('Session 1', 'Session 2', 'Session 3') NOT NULL,
+	Year INT NOT NULL,
 	Start_Time TIME NOT NULL,
 	End_Time TIME NOT NULL,
 	Capacity INT NOT NULL,

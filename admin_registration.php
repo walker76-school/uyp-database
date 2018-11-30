@@ -107,7 +107,7 @@
                        <input type="text" name="user" class="form-control" placeholder="User ID" required="required">
                     </div>
                     <div class="col-md-2">
-                       <input type="text" name="crn" class="form-control" placeholder="Mentor Name" required="required">
+                       <input type="text" name="crn" class="form-control" placeholder="CRN" required="required">
                     </div>
                     <div class="col-md-2">
                        <input class='btn btn-primary btn-block' type='submit' name='submit' value='Remove'>
