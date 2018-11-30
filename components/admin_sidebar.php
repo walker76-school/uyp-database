@@ -13,12 +13,6 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="admin_look_up_user.php">
-      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
-      <span>Look up Student</span>
-    </a>
-  </li>
-  <li class="nav-item">
     <a class="nav-link" href="admin_edit_secondary.php">
       <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
       <span>Edit Student Info</span>
@@ -31,6 +25,12 @@
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="admin_look_up_user.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Look up Student</span>
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="admin_student_directory.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Student Directory</span>
@@ -40,6 +40,12 @@
     <a class="nav-link" href="admin_mentors.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Student Mentors</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="admin_create_class.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Create Class</span>
     </a>
   </li>
   <li class="nav-item">

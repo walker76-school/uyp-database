@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Class Update</title>
+    <title>Create Class</title>
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
@@ -28,7 +28,7 @@
 
             <div class="container-fluid">
 
-                <form method="post" action="primary_confirm.php">
+                <form method="post" action="insert_class.php">
                     
                     <!-- Grade Level -->
                     <div class="form-group">
@@ -36,7 +36,7 @@
                             <div class="col-md-2">
                                 <h5>Grade Level</h5>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <select class="form-control" id="grade_level" required="required" name="grade_level">
                                     <option value="" disabled selected></option>
                                     <option value="4th - 5th Grade">4th - 5th Grade</option>
