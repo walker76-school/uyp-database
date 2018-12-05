@@ -299,12 +299,37 @@
 
     $birthday = "\"" . $year . "-" . $month . "-" . $day . "\"";
 
-    $stmt = 'INSERT INTO SECONDARY_USER_INFO (ID, Suffix, First_Name, Last_Name, Initial, Preferred_Name, Address_Line_1, Address_Line_2, City, State, Zip, Birthday, Gender, Race, School_Name, School_District, Grade_In_Fall, GT_Status, Grad_Year, High_School, Email, Phone_Number, Sibling_Name) VALUES (' . $id . ', ' . $suffix . ', ' . $firstName . ', ' . $lastName . ', ' . $middleInitial . ', ' . $preferredName . ', ' . $addressLine1 . ', ' . $addressLine2 . ', ' . $city . ', ' . $state . ', ' . $zip . ', ' . $birthday . ', ' . $gender . ', ' . $race . ', ' . $schoolName . ', ' . $schoolDistrict . ', ' . $gradeInFall . ', ' . $gtStatus . ', ' . $gradYear . ', ' . $highSchool . ', ' . $email . ', ' . $phoneNumber . ', ' . $siblingName . ');' ; // ON DUPLICATE KEY UPDATE ;
-    echo $stmt;
+    $stmt = "INSERT INTO SECONDARY_USER_INFO (ID, Suffix, First_Name, Last_Name, Initial, Preferred_Name, Address_Line_1, Address_Line_2,".
+	        "City, State, Zip, Birthday, Gender, Race, School_Name, School_District, Grade_In_Fall, GT_Status, Grad_Year, High_School," .
+	        "Email, Phone_Number, Sibling_Name) VALUES ($id,$suffix,$firstName,$lastName,$middleInitial,$preferredName,$addressLine1,".
+			"$addressLine2,$city,$state,$zip,$birthday,$gender,$race,$schoolName,$schoolDistrict,$gradeInFall,$gtStatus,$gradYear,$highSchool,".
+			"$email,$phoneNumber,$siblingName ) ON DUPLICATE KEY UPDATE suffix = $suffix, first_name = $firstName, last_name = $lastName,".
+			"initial = $middleInitial, Preferred_Name = $preferredName, address_line_1 = $addressLine1, address_line_2 = $addressLine2," .
+			"city = $city, state = $state, zip = $zip, birthday = $birthday, gender = $gender, race = $race, school_Name = $schoolName," .
+			"school_district = $schoolDistrict, grade_in_fall = $gradeInFall, gt_status = $gtStatus, grad_year = $gradYear," .
+			"high_school = $highSchool, email = $email, phone_number = $phoneNumber, sibling_Name = $siblingName; ";
+    $stmt2 = "INSERT INTO PARENT(email, phone_number, phone_type, name, address_line_1, address_line_2, city, state, zip)" .
+	         "VALUES ($parent1Email,$parent1PhoneNumber,$parent1PhoneType,$parent1Name ,$parent1AddressLine1,$parent1AddressLine2," .
+	         "$parent1City,$parent1State,$parent1Zip) ON DUPLICATE KEY UPDATE phone_number = $parent1PhoneNumber, phone_type = $parent1PhoneType," .
+			 "address_line_1 = $parent1AddressLine1, address_line_2 = $parent1AddressLine2, city = $parent1City, state = $parent1State," .
+			 "zip = $parent1Zip;";
+	$stmt3 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent1Email) ON DUPLICATE KEY UPDATE Email = $parent1Email;";
+	echo $stmt . $stmt2 . $stmt3;
+	echo "<br>";
+	echo "<br>";
+	try{
+		$conn->query("BEGIN TRANSACTION");
+		$val = $conn->query($stmt);
+		$val2 = $conn->query($stmt2);
+		$val3 = $conn->query($stmt3);
+		$conn->commit();
+	}catch(Exception $e){
+		$conn->rollBack();
+	}
 
-    if ($conn->query($stmt) === TRUE) {
+   if ($val && $val2 && $val3) {
         header('Location: index.php');
-        //echo "Success";
+        echo "Success";
     } else {
         echo "Error: " . $stmt . "<br>" . $conn->error;
     }

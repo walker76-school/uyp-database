@@ -45,7 +45,8 @@
 	if($enrollment >= $capacity){
 		echo "Error: This class is full";
 	}else if($correct_grade == false){
-		echo "You are not in the correct grade for this class.\n You are in grade " . $grade_level_student . "while the class is for " . $grade_level_class;
+		echo "You are not in the correct grade for this class."
+		echo "You are in grade " . $grade_level_student . "while the class is for " . $grade_level_class;
 	}
 	else{
 		$stmt = 'INSERT INTO Takes (ID, CRN) VALUES (' . $user . ', ' . $crn . ');' ; // ON DUPLICATE KEY UPDATE ;

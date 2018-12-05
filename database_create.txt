@@ -56,7 +56,7 @@ CREATE TABLE PARENT(
 	Phone_Type Enum('Home', 'Work', 'Cell'),
 	Name VARCHAR(255) NOT NULL,
 	Address_Line_1 VARCHAR(255) NOT NULL,
-	Address_Line_2 VARCHAR(255) NOT NULL,
+	Address_Line_2 VARCHAR(255),
 	City VARCHAR(255) NOT NULL,
 	State VARCHAR(255) NOT NULL,
 	Zip VARCHAR(255) NOT NULL,
