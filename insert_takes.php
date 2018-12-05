@@ -16,7 +16,7 @@
     }
 	$sql = 'SELECT current_enrollment, capacity, grade_level FROM CLASS WHERE CRN = ' . $crn;
 	$sql2 = 'UPDATE CLASS SET current_enrollment = current_enrollment + 1 WHERE CRN = ' . $crn;
-	$sql3 = 'SELECT Grade_In_Fall FROM USERS NATURAL JOIN SECONDARY_USER_INFO WHERE ID = ' . $user;
+	$sql3 = 'SELECT SECONDARY_USER_INFO.Grade_In_Fall as gif FROM USERS NATURAL JOIN SECONDARY_USER_INFO WHERE USERS.ID = ' . $user;
 	
 	$result = $conn->query($sql);
 	$correct_grade = false;
@@ -26,12 +26,15 @@
 			$enrollment = (int)$row["current_enrollment"];
 			$capacity = (int)$row["capacity"];
 			$grade_level_class = $row["grade_level"];
-			//see if grade level is correct
 			$result2 = $conn->query($sql3);
-			$row2 = $result->fetch_assoc();
+			//echo $conn->error;
+			//echo $sql3;
+
+			$row2 = $result2->fetch_assoc();
             var_dump($row2);
-			$grade_level_student = $row2["grade_in_fall"];
+			$grade_level_student = (int)$row2["gif"];
 			
+			//see if grade level is correct
 			if(($grade_level_class == '4th - 5th Grade' && $grade_level_student < 6 && $grade_level_student > 3) || 
 			    ($grade_level_class == '6th - 8th Grade' && $grade_level_student < 9 && $grade_level_student > 5) ||
 			    ($grade_level_class == '9th - 12th Grade' && $grade_level_student < 13 && $grade_level_student > 8)

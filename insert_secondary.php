@@ -27,6 +27,12 @@
     $phoneNumber;
     $siblingName;
 
+	if (!empty($_POST["user"])) {
+        $user = $_POST["user"];
+    } else {
+        $user = $_COOKIE['validated'];
+    }
+	
     if (!empty($_POST["id"])) {
         $id = $_POST["id"];
     } else {
