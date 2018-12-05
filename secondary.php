@@ -46,6 +46,8 @@
         $email = "";
         $phoneNumber = "";
         $siblingName = "";
+		$parent1Zip = "";
+		$parent1PhoneType = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $_POST['user'];
@@ -157,8 +159,8 @@
             if (!empty($row["Sibling_Name"])) {
                 $siblingName = $row["Sibling_Name"];
             }
-			if (!empty($row["name"])) {
-                $parent1Name = $row["name"];
+			if (!empty($row["p_name"])) {
+                $parent1Name = $row["p_name"];
             }
 
             if (!empty($row["p_add1"])) {
@@ -173,8 +175,8 @@
                 $parent1City = $row["p_city"];
             }
 
-            if (!empty($row["parent.zip"])) {
-                $parent1Zip = $row["parent.zip"];
+            if (!empty($row["p_zip"])) {
+                $parent1Zip = $row["p_zip"];
             }
 			if (!empty($row["p_email"])) {
                 $parent1Email = $row["p_email"];
@@ -555,7 +557,7 @@
                                 <h5>Parent/Guardian 1 Name</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="parent1Name" class="form-control" required="required">
+                                <input type="text" name="parent1Name" class="form-control"  required="required" value=<?php echo $parent1Name ?>>
                             </div>
                         </div>
                     </div>
@@ -567,7 +569,7 @@
                                 <h5>Address Line 1</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="parent1AddressLine1" class="form-control" required="required">
+                                <input type="text" name="parent1AddressLine1" class="form-control" required="required" value=<?php echo $parent1AddressLine1 ?>>
                             </div>
                         </div>
                     </div>
@@ -591,7 +593,7 @@
                                 <h5>City</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="parent1City" class="form-control" required="required">
+                                <input type="text" name="parent1City" class="form-control" required="required" value=<?php echo $parent1AddressLine2 ?>>
                             </div>
                         </div>
                     </div>
@@ -609,7 +611,7 @@
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="parent1Zip" class="form-control" required="required">
+                                <input type="text" name="parent1Zip" class="form-control" required="required" value=<?php echo $parent1Zip ?>>
                             </div>
                         </div>
                     </div>
@@ -621,7 +623,7 @@
                                 <h5>Parent/Guardian 1 Email Address</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="email" name="parent1Email" class="form-control" required="required">
+                                <input type="email" name="parent1Email" class="form-control" required="required" value=<?php echo $parent1Email ?>>
                             </div>
                         </div>
                     </div>
@@ -633,7 +635,7 @@
                                 <h5>Parent/Guardian 1 Phone Number</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="parent1PhoneNumber" class="form-control" required="required">
+                                <input type="text" name="parent1PhoneNumber" class="form-control" required="required" value=<?php echo $parent1PhoneNumber ?>>
                             </div>
                         </div>
                     </div>
@@ -645,11 +647,11 @@
                                 <h5>Parent/Guardian 1 Phone Type</h5>
                             </div>
                             <div class="col-md-3">
-                                <select class="form-control" name="parent1PhoneType" required="required">
+                                <select class="form-control" required="required" name="parent1PhoneType" >
                                     <option value="" disabled selected></option>
-                                    <option value="Work">Work</option>
-                                    <option value="Cell">Cell</option>
-                                    <option value="Home">Home</option>
+                                    <option value="Work" <?php if($parent1PhoneType == 'Work') echo 'selected'; ?>> Work</option>
+                                    <option value="Cell" <?php if($parent1PhoneType == 'Cell') echo 'selected'; ?>> Cell</option>
+                                    <option value="Home" <?php if($parent1PhoneType == 'Home') echo 'selected'; ?>> Home</option>
                                 </select>
                             </div>
                         </div>
