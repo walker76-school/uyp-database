@@ -67,8 +67,8 @@
             $row = $result->fetch_assoc();
             var_dump($row);
 
-            if (!empty($row["Suffix"])) {
-                $suffix = $row["Suffix"];
+            if (!empty($row["suffix"])) {
+                $suffix = $row["suffix"];
             }
 
             if (!empty($row["first_name"])) {
@@ -130,16 +130,16 @@
                 $schoolDistrict = $row["school_district"];
             }
 
-            if (!empty($row["Grade_In_Fall"])) {
-                $gradeInFall = $row["Grade_In_Fall"];
+            if (!empty($row["grade_in_fall"])) {
+                $gradeInFall = $row["grade_in_fall"];
             }
 
-            if (!empty($row["GT_Status"])) {
-                $gtStatus = $row["GT_Status"];
+            if (!empty($row["gt_status"])) {
+                $gtStatus = $row["gt_status"];
             }
 
-            if (!empty($row["Grad_Year"])) {
-                $gradYear = $row["Grad_Year"];
+            if (!empty($row["grad_year"])) {
+                $gradYear = $row["grad_year"];
             }
 
             if (!empty($row["high_school"])) {
