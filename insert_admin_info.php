@@ -50,7 +50,11 @@
         $additionalInfo = "\"" . $_POST["additionalInfo"] . "\"";
     }
 
-    $stmt = 'INSERT INTO ADMIN_USER_INFO (ID, Year_Accepted, Grade_Accepted, Enrollment_Status, Grant_Status, Disability, Health, ELL, Additional_Info) VALUES (' . $user . ', ' . $yearAccepted  . ', ' . $gradeAccepted . ', ' . $enrollmentStatus . ', ' . $grantStatus . ', ' . $disability . ', ' . $health . ', ' . $ell . ', ' . $additionalInfo . ');' ; // ON DUPLICATE KEY UPDATE ;
+    $stmt = "INSERT INTO ADMIN_USER_INFO (ID, Year_Accepted, Grade_Accepted, Enrollment_Status, Grant_Status, Disability, Health," .
+            "ELL, Additional_Info) VALUES ( $user,$yearAccepted ,$gradeAccepted,$enrollmentStatus,$grantStatus,$disability,$health,$ell," .
+            "$additionalInfo ); ON DUPLICATE KEY UPDATE year_accepted = $yearAccepted, grade_accepted = $gradeAccepted," .
+            "enrollment _Status = $enrollmentStatus, grant_status = $grantStatus, disability = $disability, health = $health, ell = $ell" .
+			"ell = $ell;";
 
     if ($conn->query($stmt) === TRUE) {
         header('Location: index.php');
