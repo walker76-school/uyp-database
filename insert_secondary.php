@@ -313,16 +313,35 @@
 	         "$parent1City,$parent1State,$parent1Zip) ON DUPLICATE KEY UPDATE phone_number = $parent1PhoneNumber, phone_type = $parent1PhoneType," .
 			 "address_line_1 = $parent1AddressLine1, address_line_2 = $parent1AddressLine2, city = $parent1City, state = $parent1State," .
 			 "zip = $parent1Zip;";
-	$stmt3 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent1Email) ON DUPLICATE KEY UPDATE Email = $parent1Email;";
-	echo $stmt . $stmt2 . $stmt3;
+	$stmt3 = "INSERT INTO PARENT(email, phone_number, phone_type, name, address_line_1, address_line_2, city, state, zip)" .
+	         "VALUES ($parent2Email,$parent2PhoneNumber,$parent2PhoneType,$parent2Name ,$parent2AddressLine1,$parent2AddressLine2," .
+	         "$parent2City,$parent2State,$parent2Zip) ON DUPLICATE KEY UPDATE phone_number = $parent2PhoneNumber, phone_type = $parent2PhoneType," .
+			 "address_line_1 = $parent2AddressLine1, address_line_2 = $parent2AddressLine2, city = $parent2City, state = $parent2State," .
+			 "zip = $parent2Zip;";
+	$stmt4 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent1Email) ON DUPLICATE KEY UPDATE Email = $parent1Email;";
+	$stmt5 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent2Email) ON DUPLICATE KEY UPDATE Email = $parent2Email;";
+
+	echo $stmt . $stmt2 . $stmt3 . $stmt4 . $stmt5;
 	echo "<br>";
 	echo "<br>";
+	$val = $conn->query($stmt);
+
 	try{
 		$conn->query("BEGIN TRANSACTION");
-		$val = $conn->query($stmt);
 		$val2 = $conn->query($stmt2);
-		$val3 = $conn->query($stmt3);
+		$val3 = $conn->query($stmt4);
 		$conn->commit();
+	}catch(Exception $e){
+		$conn->rollBack();
+	}
+	
+	try{
+		if(parent2Email != NULL){
+			$conn->query("BEGIN TRANSACTION");
+			$val4 = $conn->query($stmt3);
+			$val5 = $conn->query($stmt5);
+			$conn->commit();
+		}
 	}catch(Exception $e){
 		$conn->rollBack();
 	}

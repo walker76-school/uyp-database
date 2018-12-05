@@ -48,6 +48,22 @@
         $siblingName = "";
 		$parent1Zip = "";
 		$parent1PhoneType = "";
+		$parent1PhoneNumber = "";
+		$parent1AddressLine1 = "";
+		$parent1AddressLine2 = "";
+		$parent1Email = "";
+		$parent1City = "";
+		$parent1State = "";
+				
+		$parent2Name = "";
+		$parent2Zip = "";
+		$parent2PhoneType = "";
+		$parent2PhoneNumber = "";
+		$parent2AddressLine1 = "";
+		$parent2AddressLine2 = "";
+		$parent2Email = "";
+		$parent2City = "";
+		$parent2State = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $_POST['user'];
@@ -67,6 +83,8 @@
 
         if($result && mysqli_num_rows($result) > 0){
             $row = $result->fetch_assoc();
+			$row2 = $result->fetch_assoc();
+
             var_dump($row);
 
             if (!empty($row["suffix"])) {
@@ -174,6 +192,10 @@
             if (!empty($row["p_city"])) {
                 $parent1City = $row["p_city"];
             }
+			
+			if (!empty($row["p_state"])) {
+                $parent1State = $row["p_state"];
+            }
 
             if (!empty($row["p_zip"])) {
                 $parent1Zip = $row["p_zip"];
@@ -186,6 +208,40 @@
             }
 			if (!empty($row["parent.phone_type"])) {
                 $parent1PhoneType = $row["parent.phone_type"];
+            }
+			
+			//PARENT NUMBER TWO
+			if (!empty($row2["p_name"])) {
+                $parent2Name = $row2["p_name"];
+            }
+
+            if (!empty($row2["p_add1"])) {
+                $parent2AddressLine1 = $row2["p_add1"];
+            }
+
+            if (!empty($row2["p_add2"])) {
+                $parent2AddressLine2 = $row2["p_add2"];
+            }
+
+            if (!empty($row2["p_city"])) {
+                $parent2City = $row2["p_city"];
+            }
+			
+			if (!empty($row2["p_state"])) {
+                $parent2State = $row2["p_state"];
+            }
+
+            if (!empty($row2["p_zip"])) {
+                $parent2Zip = $row2["p_zip"];
+            }
+			if (!empty($row2["p_email"])) {
+                $parent2Email = $row2["p_email"];
+            }
+			if (!empty($row2["p_phone"])) {
+                $parent2PhoneNumber = $row2["p_phone"];
+            }
+			if (!empty($row2["parent.phone_type"])) {
+                $parent2PhoneType = $row2["parent.phone_type"];
             }
         }
     ?>
@@ -673,7 +729,7 @@
                                     <h5>Parent/Guardian 2 Name</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2Name" name="parent2Name" class="form-control">
+                                    <input type="text" id="parent2Name" name="parent2Name" class="form-control" value=<?php echo $parent2Name ?>>
                                 </div>
                             </div>
                         </div>
@@ -685,7 +741,7 @@
                                     <h5>Address Line 1</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2AddressLine1" name="parent2AddressLine1" class="form-control">
+                                    <input type="text" id="parent2AddressLine1" name="parent2AddressLine1" class="form-control" value=<?php echo $parent2AddressLine1 ?>>
                                 </div>
                             </div>
                         </div>
@@ -697,7 +753,7 @@
                                     <h5>Address Line 2</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2AddressLine2" name="parent2AddressLine2" class="form-control">
+                                    <input type="text" id="parent2AddressLine2" name="parent2AddressLine2" class="form-control" value=<?php echo $parent2AddressLine2 ?>>
                                 </div>
                             </div>
                         </div>
@@ -709,7 +765,7 @@
                                     <h5>City</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2City" name="parent2City" class="form-control">
+                                    <input type="text" id="parent2City" name="parent2City" class="form-control" value=<?php echo $parent2City ?>>
                                 </div>
                             </div>
                         </div>
@@ -721,13 +777,13 @@
                                     <h5>State & Zip</h5>
                                 </div>
                                 <div class="col-md-2">
-                                    <select class="form-control" id= "parent2State" name="parent2State">
+                                    <select class="form-control" id= "parent2State" name="parent2State" value=<?php echo $parent2State ?>>
                                         <option value="" disabled selected></option>
                                     <option value="Texas">Texas</option>
                                     </select>
                                 </div>
                                 <div class="col-md-1">
-                                    <input type="text" id="parent2Zip" name="parent2Zip" class="form-control">
+                                    <input type="text" id="parent2Zip" name="parent2Zip" class="form-control" value=<?php echo $parent2Zip ?>>
                                 </div>
                             </div>
                         </div>
@@ -739,7 +795,7 @@
                                     <h5>Parent/Guardian 2 Email Address</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="email" id="parent2Email" name="parent2Email" class="form-control">
+                                    <input type="email" id="parent2Email" name="parent2Email" class="form-control" value=<?php echo $parent2Email ?>>
                                 </div>
                             </div>
                         </div>
@@ -751,7 +807,7 @@
                                     <h5>Parent/Guardian 2 Phone Number</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2PhoneNumber" name="parent2PhoneNumber" class="form-control">
+                                    <input type="text" id="parent2PhoneNumber" name="parent2PhoneNumber" class="form-control" value=<?php echo $parent2PhoneNumber ?>>
                                 </div>
                             </div>
                         </div>
@@ -765,9 +821,9 @@
                                 <div class="col-md-3">
                                     <select id='parent2PhoneType' class="form-control" name="parent2PhoneType">
                                         <option value="" disabled selected></option>
-                                        <option value="Work">Work</option>
-                                        <option value="Cell">Cell</option>
-                                        <option value="Home">Home</option>
+                                    <option value="Work" <?php if($parent1PhoneType == 'Work') echo 'selected'; ?>> Work</option>
+                                    <option value="Cell" <?php if($parent1PhoneType == 'Cell') echo 'selected'; ?>> Cell</option>
+                                    <option value="Home" <?php if($parent1PhoneType == 'Home') echo 'selected'; ?>> Home</option>
                                     </select>
                                 </div>
                             </div>
