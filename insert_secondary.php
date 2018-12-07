@@ -299,6 +299,8 @@
 
     $birthday = "\"" . $year . "-" . $month . "-" . $day . "\"";
 
+    $success = true;
+
     $stmt = "INSERT INTO SECONDARY_USER_INFO (ID, Suffix, First_Name, Last_Name, Initial, Preferred_Name, Address_Line_1, Address_Line_2,".
 	        "City, State, Zip, Birthday, Gender, Race, School_Name, School_District, Grade_In_Fall, GT_Status, Grad_Year, High_School," .
 	        "Email, Phone_Number, Sibling_Name) VALUES ($id,$suffix,$firstName,$lastName,$middleInitial,$preferredName,$addressLine1,".
@@ -308,45 +310,58 @@
 			"city = $city, state = $state, zip = $zip, birthday = $birthday, gender = $gender, race = $race, school_Name = $schoolName," .
 			"school_district = $schoolDistrict, grade_in_fall = $gradeInFall, gt_status = $gtStatus, grad_year = $gradYear," .
 			"high_school = $highSchool, email = $email, phone_number = $phoneNumber, sibling_Name = $siblingName; ";
+
+    $val = $conn->query($stmt);
+
+    $success = $success && $val;
+    //var_dump($success);
+
     $stmt2 = "INSERT INTO PARENT(email, phone_number, phone_type, name, address_line_1, address_line_2, city, state, zip)" .
 	         "VALUES ($parent1Email,$parent1PhoneNumber,$parent1PhoneType,$parent1Name ,$parent1AddressLine1,$parent1AddressLine2," .
 	         "$parent1City,$parent1State,$parent1Zip) ON DUPLICATE KEY UPDATE phone_number = $parent1PhoneNumber, phone_type = $parent1PhoneType," .
 			 "address_line_1 = $parent1AddressLine1, address_line_2 = $parent1AddressLine2, city = $parent1City, state = $parent1State," .
 			 "zip = $parent1Zip;";
-	$stmt3 = "INSERT INTO PARENT(email, phone_number, phone_type, name, address_line_1, address_line_2, city, state, zip)" .
+    $stmt4 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent1Email) ON DUPLICATE KEY UPDATE Email = $parent1Email;";
+
+    echo $stmt2;
+    echo $stmt4;
+
+    try{
+        $conn->query("BEGIN TRANSACTION");
+        $val2 = $conn->query($stmt2);
+        $val3 = $conn->query($stmt4);
+        $conn->commit();
+        $success = $success && $val2 && $val3;
+        var_dump($success);
+        var_dump($val2);
+        var_dump($val3);
+    }catch(Exception $e){
+        $conn->rollBack();
+    }
+        
+
+    if(strcmp($parent2Name, "'Null'") == 0){
+	   $stmt3 = "INSERT INTO PARENT(email, phone_number, phone_type, name, address_line_1, address_line_2, city, state, zip)" .
 	         "VALUES ($parent2Email,$parent2PhoneNumber,$parent2PhoneType,$parent2Name ,$parent2AddressLine1,$parent2AddressLine2," .
 	         "$parent2City,$parent2State,$parent2Zip) ON DUPLICATE KEY UPDATE phone_number = $parent2PhoneNumber, phone_type = $parent2PhoneType," .
 			 "address_line_1 = $parent2AddressLine1, address_line_2 = $parent2AddressLine2, city = $parent2City, state = $parent2State," .
 			 "zip = $parent2Zip;";
-	$stmt4 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent1Email) ON DUPLICATE KEY UPDATE Email = $parent1Email;";
-	$stmt5 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent2Email) ON DUPLICATE KEY UPDATE Email = $parent2Email;";
 
-	echo $stmt . $stmt2 . $stmt3 . $stmt4 . $stmt5;
-	echo "<br>";
-	echo "<br>";
-	$val = $conn->query($stmt);
+        $stmt5 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent2Email) ON DUPLICATE KEY UPDATE Email = $parent2Email;";
+        try{
+            $conn->query("BEGIN TRANSACTION");
+            $val4 = $conn->query($stmt3);
+            $val5 = $conn->query($stmt5);
+            $conn->commit();
+            $success = $success && $val4 && $val5;
+        }catch(Exception $e){
+            $conn->rollBack();
+        }
 
-	try{
-		$conn->query("BEGIN TRANSACTION");
-		$val2 = $conn->query($stmt2);
-		$val3 = $conn->query($stmt4);
-		$conn->commit();
-	}catch(Exception $e){
-		$conn->rollBack();
-	}
-	
-	try{
-		if(parent2Email != NULL){
-			$conn->query("BEGIN TRANSACTION");
-			$val4 = $conn->query($stmt3);
-			$val5 = $conn->query($stmt5);
-			$conn->commit();
-		}
-	}catch(Exception $e){
-		$conn->rollBack();
-	}
 
-   if ($val && $val2 && $val3) {
+    }
+
+   if ($success) {
         header('Location: index.php');
         echo "Success";
     } else {

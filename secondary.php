@@ -39,13 +39,17 @@
         $race = "";
         $schoolName = "";
         $schoolDistrict = "";
+        $schoolType = "undef";
         $gtStatus = "";
         $gradeInFall = "";
         $gradYear = "";
         $highSchool = "";
         $email = "";
         $phoneNumber = "";
+        $hasSibling = "undef";
         $siblingName = "";
+
+        $parent1Name = "";
 		$parent1Zip = "";
 		$parent1PhoneType = "";
 		$parent1PhoneNumber = "";
@@ -73,10 +77,10 @@
         $sql = "SELECT suffix, first_name, last_name, initial, preferred_name, sei.address_line_1 as s_add1, sei.address_line_2 as s_add2,".
                "sei.city as s_city, sei.state as s_state, sei.zip as s_zip, birthday, gender, race, school_name, school_district," .
                "grade_in_fall, gt_status, grad_year, high_school, sei.email as s_email, sei.phone_number as s_phone, sibling_name," .
-               "p.email as p_email, p.phone_number as p_phone, p.name as p_name, p.address_line_1 as p_add1, p.address_line_2 as p_add2, p.city as p_city, p.state as p_state, p.zip as p_zip " .
+               "p.email as p_email, p.phone_number as p_phone, p.phone_type as p_phoneType, p.name as p_name, p.address_line_1 as p_add1, p.address_line_2 as p_add2, p.city as p_city, p.state as p_state, p.zip as p_zip " .
 			   "FROM SECONDARY_USER_INFO sei,parent_to_student,parent p WHERE sei.id=$user AND sei.ID =".
                "parent_to_student.id AND parent_to_student.email = p.email";
-        echo $sql;
+        //echo $sql;
 
         $result = $conn->query($sql);
         //var_dump($result);
@@ -85,7 +89,10 @@
             $row = $result->fetch_assoc();
 			$row2 = $result->fetch_assoc();
 
-            var_dump($row);
+            //var_dump($row);
+
+            $schoolType = "";
+            $hasSibling = "";
 
             if (!empty($row["suffix"])) {
                 $suffix = $row["suffix"];
@@ -206,8 +213,8 @@
 			if (!empty($row["p_phone"])) {
                 $parent1PhoneNumber = $row["p_phone"];
             }
-			if (!empty($row["parent.phone_type"])) {
-                $parent1PhoneType = $row["parent.phone_type"];
+			if (!empty($row["p_phoneType"])) {
+                $parent1PhoneType = $row["p_phoneType"];
             }
 			
 			//PARENT NUMBER TWO
@@ -240,8 +247,8 @@
 			if (!empty($row2["p_phone"])) {
                 $parent2PhoneNumber = $row2["p_phone"];
             }
-			if (!empty($row2["parent.phone_type"])) {
-                $parent2PhoneType = $row2["parent.phone_type"];
+			if (!empty($row2["p_phoneType"])) {
+                $parent2PhoneType = $row2["p_phoneType"];
             }
         }
     ?>
@@ -376,13 +383,29 @@
                                 <h5>Birthday</h5>
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="month" class="form-control" length=2 value=<?php echo $month ?> required="required">
+                                <input type="text" name="month" class="form-control" length=2 required="required" value=<?php echo $month ?> >
+                            </div>
+                            <!--
+                            <select class="form-control" required="required" name="capacity">
+                                    <option value="" disabled selected></option>
+                                    <option value="1" <?php echo $month == 1 ? 'selected' : '' ?> >1</option>
+                                    <option value="2" <?php echo $month == 2 ? 'selected' : '' ?> >2</option>
+                                    <option value="3" <?php echo $month == 3 ? 'selected' : '' ?> >3</option>
+                                    <option value="4" <?php echo $month == 4 ? 'selected' : '' ?> >4</option>
+                                    <option value="5" <?php echo $month == 5 ? 'selected' : '' ?> >5</option>
+                                    <option value="6" <?php echo $month == 6 ? 'selected' : '' ?> >6</option>
+                                    <option value="7" <?php echo $month == 7 ? 'selected' : '' ?> >7</option>
+                                    <option value="8" <?php echo $month == 8 ? 'selected' : '' ?> >8</option>
+                                    <option value="9" <?php echo $month == 9 ? 'selected' : '' ?> >9</option>
+                                    <option value="10" <?php echo $month == 10 ? 'selected' : '' ?> >10</option>
+                                    <option value="11" <?php echo $month == 11 ? 'selected' : '' ?> >11</option>
+                                    <option value="12" <?php echo $month == 12 ? 'selected' : '' ?> >12</option>
+                                </select> -->
+                            <div class="col-md-1">
+                                <input type="text" name="day" class="form-control" length=2 required="required" value=<?php echo $day ?> >
                             </div>
                             <div class="col-md-1">
-                                <input type="text" name="day" class="form-control" length=2 value=<?php echo $day ?> required="required">
-                            </div>
-                            <div class="col-md-1">
-                                <input type="text" name="year" class="form-control" length=4 value=<?php echo $year ?> required="required">
+                                <input type="text" name="year" class="form-control" length=4 required="required" value=<?php echo $year ?> >
                             </div>
                         </div>
                     </div>
@@ -434,13 +457,14 @@
                     </div>
 
                     <?php
-                        $schoolType;
-                        if($schoolName == null && $schoolDistrict == null){
-                            $schoolType = 'Home-Schooled';
-                        } else if ($schoolName != null && $schoolDistrict == null){
-                            $schoolType = 'Private';
-                        } else {
-                            $schoolType = 'Public';
+                        if(strcmp($schoolType, "undef") != 0){
+                            if($schoolName == null && $schoolDistrict == null){
+                                $schoolType = 'Home-Schooled';
+                            } else if ($schoolName != null && $schoolDistrict == null){
+                                $schoolType = 'Private';
+                            } else {
+                                $schoolType = 'Public';
+                            }
                         }
                     ?>
 
@@ -462,7 +486,7 @@
                     </div>
 
                     <!-- School Name -->
-                    <div class="form-group" id="schoolNameGroup" <?php if($schoolType == 'Home-Schooled') echo "style='display:none'" ?> >
+                    <div class="form-group" id="schoolNameGroup" <?php if($schoolType == 'Home-Schooled' || $schoolType == 'undef') echo "style='display:none'" ?> >
                         <div class="form-group" >
                             <div class="form-row">
                                 <div class="col-md-2">
@@ -476,7 +500,7 @@
                     </div>
 
                     <!-- School District -->
-                    <div class="form-group" id="schoolDistrictGroup" <?php if($schoolType == 'Home-Schooled' || $schoolType == 'Private') echo "style='display:none'" ?> >
+                    <div class="form-group" id="schoolDistrictGroup" <?php if($schoolType == 'Home-Schooled' || $schoolType == 'Private' || $schoolType == 'undef') echo "style='display:none'" ?> >
                         <div class="form-row">
                             <div class="col-md-2">
                                 <h5>School District</h5>
@@ -587,21 +611,36 @@
                         </div>
                     </div>
 
+                    <?php 
+                        $yesChecked = false;
+                        $noChecked = false;
+
+                        if(strcmp($hasSibling, "undef") != 0){
+                            if($siblingName != null){
+                                $yesChecked = true;
+                                $noChecked = false;
+                            } else {
+                                $yesChecked = false;
+                                $noChecked = true;
+                            }
+                        }
+                    ?>
+
                     <!-- Sibling -->
                     <div class="form-group">
                         <h5>Do you have a sibling already in the UPY program?</h5>
-                        <input type="radio" id="siblingYes" name="sibling" value="yes" onclick="javascript:siblingForm();" required="required" <?php echo ($siblingName != null)?'checked':'' ?>> Yes<br>
-                        <input type="radio" id="siblingNo" name="sibling" value="no" onclick="javascript:siblingForm();" required="required" <?php echo ($siblingName != null)?'':'checked' ?>> No<br>
+                        <input type="radio" id="siblingYes" name="sibling" value="yes" onclick="javascript:siblingForm();" required="required" <?php echo $yesChecked ?'checked':'' ?>> Yes<br>
+                        <input type="radio" id="siblingNo" name="sibling" value="no" onclick="javascript:siblingForm();" required="required" <?php echo $noChecked ?'checked':'' ?>> No<br>
                     </div>
 
                     <!-- Sibling Name -->
-                    <div id="sibling" class="form-group" <?php if($siblingName == null) echo 'style="display:none"'?> >
+                    <div id="sibling" class="form-group" <?php echo $yesChecked ? '':'style="display:none"'?> >
                         <div class="form-row">
                             <div class="col-md-2">
                                 <h5>Sibling Name</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" id="siblingName" name="siblingName" class="form-control" value=<?php echo $siblingName ?>  <?php echo ($siblingName != null)?'required':'' ?>>
+                                <input type="text" id="siblingName" name="siblingName" class="form-control" value=<?php echo $siblingName ?>  <?php echo $yesChecked ? 'required':'' ?> >
                             </div>
                         </div>
                     </div>
@@ -637,7 +676,7 @@
                                 <h5>Address Line 2</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="parent1AddressLine2" class="form-control">
+                                <input type="text" name="parent1AddressLine2" class="form-control" value=<?php echo $parent1AddressLine2 ?>>
                             </div>
                         </div>
                     </div>
@@ -649,7 +688,7 @@
                                 <h5>City</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="parent1City" class="form-control" required="required" value=<?php echo $parent1AddressLine2 ?>>
+                                <input type="text" name="parent1City" class="form-control" required="required" value=<?php echo $parent1City ?>>
                             </div>
                         </div>
                     </div>
@@ -663,7 +702,7 @@
                             <div class="col-md-2">
                                 <select class="form-control" name="parent1State" required="required">
                                     <option value="" disabled selected></option>
-                                    <option value="Texas">Texas</option>
+                                    <option value="Texas" <?php if($parent1State == 'Texas') echo 'selected'; ?> >Texas</option>
                                 </select>
                             </div>
                             <div class="col-md-1">
@@ -777,7 +816,7 @@
                                     <h5>State & Zip</h5>
                                 </div>
                                 <div class="col-md-2">
-                                    <select class="form-control" id= "parent2State" name="parent2State" value=<?php echo $parent2State ?>>
+                                    <select class="form-control" id= "parent2State" name="parent2State">
                                         <option value="" disabled selected></option>
                                     <option value="Texas">Texas</option>
                                     </select>

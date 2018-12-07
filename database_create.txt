@@ -52,7 +52,7 @@ CREATE TABLE ADMIN_USER_INFO (
 
 CREATE TABLE PARENT(
 	Email VARCHAR(255) NOT NULL,
-	Phone_Number VARCHAR(10),
+	Phone_Number VARCHAR(12),
 	Phone_Type Enum('Home', 'Work', 'Cell'),
 	Name VARCHAR(255) NOT NULL,
 	Address_Line_1 VARCHAR(255) NOT NULL,
