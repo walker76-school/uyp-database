@@ -59,6 +59,7 @@
 		$parent1City = "";
 		$parent1State = "";
 				
+        $hasParent2 = "undef";
 		$parent2Name = "";
 		$parent2Zip = "";
 		$parent2PhoneType = "";
@@ -93,6 +94,7 @@
 
             $schoolType = "";
             $hasSibling = "";
+            $hasParent2 = "";
 
             if (!empty($row["suffix"])) {
                 $suffix = $row["suffix"];
@@ -754,15 +756,34 @@
                         </div>
                     </div>
 
+                    <?php
+
+                        $parentYesChecked = false;
+                        $parentNoChecked = false;
+                        $parent2 = false;
+
+                        if(strcmp($hasParent2, "undef") != 0){
+                            if($siblingName != null){
+                                $parentYesChecked = true;
+                                $parentNoChecked = false;
+                                $parent2 = true;
+                            } else {
+                                $parentYesChecked = false;
+                                $parentNoChecked = true;
+                            }
+                        }
+
+                    ?>
+
                     <!-- Parent 2 -->
                     <div class="form-group">
                         <h5>Do you want to add a second parent/guardian?</h5>
-                        <input type="radio" id="parentYes" name="parent" value="yes" <?php echo $parent2Name != null ?'checked':'' ?> onclick="javascript:parentForm();" required="required"> Yes<br>
-                        <input type="radio" id="parentNo" name="parent" value="no"  <?php echo $parent2Name != null ?'':'checked' ?> onclick="javascript:parentForm();" required="required"> No<br>
+                        <input type="radio" id="parentYes" name="parent" value="yes" <?php echo $parentYesChecked ?'checked':'' ?> onclick="javascript:parentForm();" required="required"> Yes<br>
+                        <input type="radio" id="parentNo" name="parent" value="no"  <?php echo $parentNoChecked ?'checked':'' ?> onclick="javascript:parentForm();" required="required"> No<br>
                     </div>
 
                     <!-- Parent 2 -->
-                    <div id="parent" <?php echo $parent2Name != null ?'':'style="display:none"' ?> >
+                    <div id="parent" <?php echo $parent2 ?'':'style="display:none"' ?> >
                         <!-- Parent 2 Name -->
                         <div class="form-group">
                             <div class="form-row">
@@ -770,7 +791,7 @@
                                     <h5>Parent/Guardian 2 Name</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2Name" name="parent2Name" class="form-control" <?php echo $parent2Name != null ?'required':'' ?> value=<?php echo $parent2Name ?>>
+                                    <input type="text" id="parent2Name" name="parent2Name" class="form-control" <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2Name ?>>
                                 </div>
                             </div>
                         </div>
@@ -782,7 +803,7 @@
                                     <h5>Address Line 1</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2AddressLine1" name="parent2AddressLine1" class="form-control" <?php echo $parent2Name != null ?'required':'' ?> value=<?php echo $parent2AddressLine1 ?>>
+                                    <input type="text" id="parent2AddressLine1" name="parent2AddressLine1" class="form-control" <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2AddressLine1 ?>>
                                 </div>
                             </div>
                         </div>
@@ -806,7 +827,7 @@
                                     <h5>City</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2City" name="parent2City" class="form-control" <?php echo $parent2Name != null ?'required':'' ?> value=<?php echo $parent2City ?>>
+                                    <input type="text" id="parent2City" name="parent2City" class="form-control" <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2City ?>>
                                 </div>
                             </div>
                         </div>
@@ -818,13 +839,13 @@
                                     <h5>State & Zip</h5>
                                 </div>
                                 <div class="col-md-2">
-                                    <select class="form-control" id= "parent2State" name="parent2State" <?php echo $parent2Name != null ?'required':'' ?> >
+                                    <select class="form-control" id= "parent2State" name="parent2State" <?php echo $parent2 ?'required':'' ?> >
                                         <option value="" disabled selected></option>
                                     <option value="Texas" <?php if($parent2State == 'Texas') echo 'selected'; ?> >Texas</option>
                                     </select>
                                 </div>
                                 <div class="col-md-1">
-                                    <input type="text" id="parent2Zip" name="parent2Zip" class="form-control" <?php echo $parent2Name != null ?'required':'' ?> value=<?php echo $parent2Zip ?>>
+                                    <input type="text" id="parent2Zip" name="parent2Zip" class="form-control" <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2Zip ?>>
                                 </div>
                             </div>
                         </div>
@@ -836,7 +857,7 @@
                                     <h5>Parent/Guardian 2 Email Address</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="email" id="parent2Email" name="parent2Email" class="form-control" <?php echo $parent2Name != null ?'required':'' ?> value=<?php echo $parent2Email ?>>
+                                    <input type="email" id="parent2Email" name="parent2Email" class="form-control" <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2Email ?>>
                                 </div>
                             </div>
                         </div>
@@ -848,7 +869,7 @@
                                     <h5>Parent/Guardian 2 Phone Number</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2PhoneNumber" name="parent2PhoneNumber" class="form-control" <?php echo $parent2Name != null ?'required':'' ?> value=<?php echo $parent2PhoneNumber ?>>
+                                    <input type="text" id="parent2PhoneNumber" name="parent2PhoneNumber" class="form-control" <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2PhoneNumber ?>>
                                 </div>
                             </div>
                         </div>
@@ -860,7 +881,7 @@
                                     <h5>Parent/Guardian 2 Phone Type</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <select id='parent2PhoneType' class="form-control" name="parent2PhoneType" <?php echo $parent2Name != null ?'required':'' ?> >
+                                    <select id='parent2PhoneType' class="form-control" name="parent2PhoneType" <?php echo $parent2 ?'required':'' ?> >
                                         <option value="" disabled selected></option>
                                     <option value="Work" <?php if($parent2PhoneType == 'Work') echo 'selected'; ?>> Work</option>
                                     <option value="Cell" <?php if($parent2PhoneType == 'Cell') echo 'selected'; ?>> Cell</option>
