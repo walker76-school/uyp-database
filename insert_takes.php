@@ -20,6 +20,8 @@
 	
 	$result = $conn->query($sql);
 	$correct_grade = false;
+	$capacity = -1;
+	$enrollment = 0;
 	if($result && mysqli_num_rows($result) > 0){
 			$row = $result->fetch_assoc();
             var_dump($row);
@@ -42,11 +44,11 @@
 				$correct_grade = true;
 			}
 	}
-	if($enrollment >= $capacity){
+	if($capacity > 0 && $enrollment >= $capacity){
 		echo "Error: This class is full";
 	}else if($correct_grade == false){
-		echo "You are not in the correct grade for this class."
-		echo "You are in grade " . $grade_level_student . "while the class is for " . $grade_level_class;
+		echo "You are not in the correct grade for this class.";
+		//echo "You are in grade " . $grade_level_student . "while the class is for " . $grade_level_class;
 	}
 	else{
 		$stmt = 'INSERT INTO Takes (ID, CRN) VALUES (' . $user . ', ' . $crn . ');' ; // ON DUPLICATE KEY UPDATE ;

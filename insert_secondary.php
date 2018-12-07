@@ -297,6 +297,11 @@
         $parent2PhoneType = 'NULL';
     }
 
+    $parent2 = false;
+    if (!empty($_POST["parent"])) {
+        $parent2 = strcmp($_POST["parent"], "no") == 0 ? false : true;
+    } 
+
     $birthday = "\"" . $year . "-" . $month . "-" . $day . "\"";
 
     $success = true;
@@ -323,8 +328,8 @@
 			 "zip = $parent1Zip;";
     $stmt4 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent1Email) ON DUPLICATE KEY UPDATE Email = $parent1Email;";
 
-    echo $stmt2;
-    echo $stmt4;
+    //echo $stmt2;
+    //echo $stmt4;
 
     try{
         $conn->query("BEGIN TRANSACTION");
@@ -332,15 +337,12 @@
         $val3 = $conn->query($stmt4);
         $conn->commit();
         $success = $success && $val2 && $val3;
-        var_dump($success);
-        var_dump($val2);
-        var_dump($val3);
     }catch(Exception $e){
         $conn->rollBack();
     }
         
 
-    if(strcmp($parent2Name, "'Null'") == 0){
+    if($parent2){
 	   $stmt3 = "INSERT INTO PARENT(email, phone_number, phone_type, name, address_line_1, address_line_2, city, state, zip)" .
 	         "VALUES ($parent2Email,$parent2PhoneNumber,$parent2PhoneType,$parent2Name ,$parent2AddressLine1,$parent2AddressLine2," .
 	         "$parent2City,$parent2State,$parent2Zip) ON DUPLICATE KEY UPDATE phone_number = $parent2PhoneNumber, phone_type = $parent2PhoneType," .
@@ -348,6 +350,10 @@
 			 "zip = $parent2Zip;";
 
         $stmt5 = "INSERT INTO PARENT_TO_STUDENT(ID, Email) VALUES ($id,$parent2Email) ON DUPLICATE KEY UPDATE Email = $parent2Email;";
+
+        echo $stmt3;
+        echo $stmt5;
+
         try{
             $conn->query("BEGIN TRANSACTION");
             $val4 = $conn->query($stmt3);
@@ -359,6 +365,8 @@
         }
 
 
+    } else {
+        // GONNA HAVE TO CHECK FOR PARENT 2 AND REMOVE FROM TABLE IF IT's DESELECTED
     }
 
    if ($success) {
