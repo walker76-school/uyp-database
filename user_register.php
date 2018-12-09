@@ -10,21 +10,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Mentors</title>
+    <title>Registration</title>
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
-    <?php include("admin_validation.php") ?>
+    <?php include("user_validation.php") ?>
 </head>
 
 <body id="page-top">
 
     <?php 
 
-        $sql = "SELECT USERS.ID, SECONDARY_USER_INFO.First_Name, SECONDARY_USER_INFO.Last_Name, MENTOR.Name, MENTOR.Year FROM USERS LEFT JOIN SECONDARY_USER_INFO ON USERS.ID = secondary_user_info.ID JOIN MENTOR WHERE USERS.id = MENTOR.id";
+        $sql = "SELECT USERS.ID, SECONDARY_USER_INFO.First_Name, SECONDARY_USER_INFO.Last_Name, Takes.CRN FROM USERS NATURAL JOIN Takes LEFT JOIN SECONDARY_USER_INFO ON Users.ID = secondary_user_info.ID";
         $result = $conn->query($sql);
 
-        $timeStampSql = "SELECT UPDATE_TIME FROM information_schema.tables WHERE  TABLE_SCHEMA = 'uyp' AND TABLE_NAME = 'MENTOR'";
+        $timeStampSql = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'uyp' AND TABLE_NAME = 'Takes'";
         $timeStampResult = $conn->query($timeStampSql);
         $timeStampRow = $timeStampResult->fetch_assoc();
         $timeStamp = $timeStampRow['UPDATE_TIME'];
@@ -40,24 +40,14 @@
         <div id="content-wrapper">
 
           <div class="container-fluid">
-            <form action='insert_mentor.php' method='post'>
+            <form action='insert_takes.php' method='post'>
                 <div class="form-group">
                   <div class="form-row">
                     <div class="col-md-2">
                        <input type="text" name="user" class="form-control" placeholder="User ID" required="required">
                     </div>
                     <div class="col-md-2">
-                       <input type="text" name="mentorName" class="form-control" placeholder="Mentor Name" required="required">
-                    </div>
-                    <div class="col-md-2">
-                       <select class="form-control" required="required" name="year">
-                          <option value="" disabled selected>Year</option>
-                          <option value="2018">2018</option>
-                          <option value="2019">2019</option>
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                      </select>
+                       <input type="text" name="crn" class="form-control" placeholder="CRN" required="required">
                     </div>
                     <div class="col-md-2">
                        <input class='btn btn-primary btn-block' type='submit' name='submit' value='Insert'>
@@ -78,8 +68,7 @@
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Year</th>
-                        <th>Mentor Name</th>
+                        <th>CRN</th>
                       </tr>
                     </thead>
                     <tfoot>
@@ -87,8 +76,7 @@
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Year</th>
-                        <th>Mentor Name</th>
+                        <th>CRN</th>
                       </tr>
                     </tfoot>
                     <tbody>
@@ -100,8 +88,7 @@
                             echo "<td>", !empty($row['ID']) ? $row['ID'] : "-", "</td>";
                             echo "<td>", !empty($row['First_Name']) ? $row['First_Name'] : "-", "</td>";
                             echo "<td>", !empty($row['Last_Name']) ? $row['Last_Name'] : "-", "</td>";
-                            echo "<td>", !empty($row['Year']) ? $row['Year'] : "-", "</td>";
-                            echo "<td>", !empty($row['Name']) ? $row['Name'] : "-", "</td>";
+                            echo "<td>", !empty($row['CRN']) ? $row['CRN'] : "-", "</td>";
                             echo "</tr>";
                           }
                         }
@@ -120,17 +107,7 @@
                        <input type="text" name="user" class="form-control" placeholder="User ID" required="required">
                     </div>
                     <div class="col-md-2">
-                       <input type="text" name="mentorName" class="form-control" placeholder="Mentor Name" required="required">
-                    </div>
-                    <div class="col-md-2">
-                       <select class="form-control" required="required" name="year">
-                          <option value="" disabled selected>Year</option>
-                          <option value="2018">2018</option>
-                          <option value="2019">2019</option>
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                      </select>
+                       <input type="text" name="crn" class="form-control" placeholder="CRN" required="required">
                     </div>
                     <div class="col-md-2">
                        <input class='btn btn-primary btn-block' type='submit' name='submit' value='Remove'>

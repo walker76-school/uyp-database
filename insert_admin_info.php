@@ -58,7 +58,8 @@
     if ($conn->query($stmt) === TRUE) {
         header('Location: index.php');
     } else {
-        echo "Error: " . $stmt . "<br>" . $conn->error;
+        //echo "Error: " . $stmt . "<br>" . $conn->error;
+        header('Location: error.php');
     }
 
 ?>

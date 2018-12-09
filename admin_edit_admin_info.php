@@ -117,6 +117,7 @@
 
                 <?php
                     if(!empty($error)){
+                        echo "</br>";
                         echo "<label style='color: red;'>$error</label>";
                     }
                 ?>
@@ -124,6 +125,7 @@
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
                         echo "<div>";
+                        echo "</br>";
                     } else {
                         echo "<div style='display: none;'>";
                     }
@@ -161,7 +163,7 @@
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-2">
-                                <h5>Grade Level in Upcoming Fall</h5>
+                                <h5>Grade Level When Accepted</h5>
                             </div>
                             <div class="col-md-3">
                                 <select class="form-control" id="gradeAccepted" required="required" name="gradeAccepted">

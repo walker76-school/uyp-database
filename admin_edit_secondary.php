@@ -193,6 +193,7 @@
 
                 <?php
                     if(!empty($error)){
+                        echo "</br>";
                         echo "<label style='color: red;'>$error</label>";
                     }
                 ?>
@@ -200,6 +201,7 @@
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
                         echo "<div>";
+                        echo "</br>";
                     } else {
                         echo "<div style='display: none;'>";
                     }

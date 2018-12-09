@@ -315,10 +315,12 @@
 			"city = $city, state = $state, zip = $zip, birthday = $birthday, gender = $gender, race = $race, school_Name = $schoolName," .
 			"school_district = $schoolDistrict, grade_in_fall = $gradeInFall, gt_status = $gtStatus, grad_year = $gradYear," .
 			"high_school = $highSchool, email = $email, phone_number = $phoneNumber, sibling_Name = $siblingName; ";
+    echo "About to query " . $stmt;
 
     $val = $conn->query($stmt);
 
     $success = $success && $val;
+    echo $success;
     //var_dump($success);
 
     $stmt2 = "INSERT INTO PARENT(email, phone_number, phone_type, name, address_line_1, address_line_2, city, state, zip)" .
@@ -333,12 +335,16 @@
 
     try{
         $conn->query("BEGIN TRANSACTION");
+        echo "About to query " . $stmt2;
         $val2 = $conn->query($stmt2);
+        echo "About to query " . $stmt4;
         $val3 = $conn->query($stmt4);
         $conn->commit();
         $success = $success && $val2 && $val3;
+        echo $success;
     }catch(Exception $e){
         $conn->rollBack();
+        echo "Parent 1 Error: " . $conn->error;
     }
         
 
@@ -356,12 +362,15 @@
 
         try{
             $conn->query("BEGIN TRANSACTION");
+            echo "About to query " . $stmt3;
             $val4 = $conn->query($stmt3);
+            echo "About to query " . $stmt5;
             $val5 = $conn->query($stmt5);
             $conn->commit();
             $success = $success && $val4 && $val5;
         }catch(Exception $e){
             $conn->rollBack();
+            echo "Error: " . $conn->error;
         }
 
 
@@ -369,11 +378,12 @@
         // GONNA HAVE TO CHECK FOR PARENT 2 AND REMOVE FROM TABLE IF IT's DESELECTED
     }
 
-   if ($success) {
+    echo $success;
+    if ($success) {
         header('Location: index.php');
         echo "Success";
     } else {
-        echo "Error: " . $stmt . "<br>" . $conn->error;
+        //echo "Error: " . $stmt . "<br>" . $conn->error;
     }
 
 ?>
