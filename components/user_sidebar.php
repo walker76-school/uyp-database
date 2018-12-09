@@ -25,6 +25,12 @@
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="takes_away.php">
+      <!--<i class="fas fa-fw fa-chart-area"></i>-->
+      <span>Unenroll from Class</span>
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="admin_class_directory.php">
       <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
       <span>Class Directory</span>

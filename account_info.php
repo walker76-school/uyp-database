@@ -20,12 +20,19 @@
 <body id="page-top">
 
     <?php 
-        $sql = "SELECT * FROM SECONDARY_USER_INFO WHERE id=" . $user ;
+        $sql = "SELECT suffix, first_name, last_name, initial, preferred_name, sei.address_line_1 as s_add1, sei.address_line_2 as s_add2,".
+               "sei.city as s_city, sei.state as s_state, sei.zip as s_zip, birthday, gender, race, school_name, school_district," .
+               "grade_in_fall, gt_status, grad_year, high_school, sei.email as s_email, sei.phone_number as s_phone, sibling_name," .
+               "p.email as p_email, p.phone_number as p_phone, p.phone_type as p_phoneType, p.name as p_name, p.address_line_1 as p_add1, p.address_line_2 as p_add2, p.city as p_city, p.state as p_state, p.zip as p_zip " .
+			   "FROM SECONDARY_USER_INFO sei,parent_to_student,parent p WHERE sei.id=$user AND sei.ID =".
+               "parent_to_student.id AND parent_to_student.email = p.email";
         //echo $sql;
 
         $result = $conn->query($sql);
         //var_dump($result);
-        $row = $result->fetch_assoc();
+        $row  = $result->fetch_assoc();
+		$row2 = $result->fetch_assoc();
+
         //var_dump($row);
     ?>
 
@@ -62,129 +69,149 @@
                     $email;
                     $phoneNumber;
                     $siblingName;
+					
+					$parent1Name = "-";
+					$parent1Zip = "-";
+					$parent1PhoneType = "-";
+					$parent1PhoneNumber = "-";
+					$parent1AddressLine1 = "-";
+					$parent1AddressLine2 = "-";
+					$parent1Email = "-";
+					$parent1City = "-";
+					$parent1State = "-";
+							
+					$parent2Name = "-";
+					$parent2Zip = "-";
+					$parent2PhoneType = "-";
+					$parent2PhoneNumber = "-";
+					$parent2AddressLine1 = "-";
+					$parent2AddressLine2 = "-";
+					$parent2Email = "-";
+					$parent2City = "-";
+					$parent2State = "-";
 
-                    if (!empty($row["Suffix"])) {
-                        $suffix = $row["Suffix"];
+                    if (!empty($row["suffix"])) {
+                        $suffix = $row["suffix"];
                     } else {
                         $suffix = "-";
                     }
 
-                    if (!empty($row["First_Name"])) {
-                        $firstName = $row["First_Name"];
+                    if (!empty($row["first_name"])) {
+                        $firstName = $row["first_name"];
                     } else {
                         $firstName = "-";
                     }
 
-                    if (!empty($row["Initial"])) {
-                        $middleInitial = $row["Initial"];
+                    if (!empty($row["initial"])) {
+                        $middleInitial = $row["initial"];
                     } else {
                         $middleInitial = "-";
                     }
 
-                    if (!empty($row["Last_Name"])) {
-                        $lastName = $row["Last_Name"];
+                    if (!empty($row["last_name"])) {
+                        $lastName = $row["last_name"];
                     } else {
                         $lastName = "-";
                     }
 
-                    if (!empty($row["Preferred_Name"])) {
-                        $preferredName = $row["Preferred_Name"];
+                    if (!empty($row["preferred_name"])) {
+                        $preferredName = $row["preferred_name"];
                     } else {
                         $preferredName = "-";
                     }
 
-                    if (!empty($row["Address_Line_1"])) {
-                        $addressLine1 = $row["Address_Line_1"];
+                    if (!empty($row["s_add1"])) {
+                        $addressLine1 = $row["s_add1"];
                     } else {
                         $addressLine1 = "-";
                     }
 
-                    if (!empty($row["Address_Line_2"])) {
-                        $addressLine2 = $row["Address_Line_2"];
+                    if (!empty($row["s_add2"])) {
+                        $addressLine2 = $row["s_add2"];
                     } else {
                         $addressLine2 = "-";
                     }
 
-                    if (!empty($row["City"])) {
-                        $city = $row["City"];
+                    if (!empty($row["s_city"])) {
+                        $city = $row["s_city"];
                     } else {
                         $city = "-";
                     }
 
-                    if (!empty($row["State"])) {
-                        $state = $row["State"];
+                    if (!empty($row["s_state"])) {
+                        $state = $row["s_state"];
                     } else {
                         $state = "-";
                     }
 
-                    if (!empty($row["Zip"])) {
-                        $zip = $row["Zip"];
+                    if (!empty($row["s_zip"])) {
+                        $zip = $row["s_zip"];
                     } else {
                         $zip = "-";
                     }
 
-                    if (!empty($row["Birthday"])) {
-                        $birthday = $row["Birthday"];
+                    if (!empty($row["birthday"])) {
+                        $birthday = $row["birthday"];
                     } else {
                         $birthday = "-";
                     }
 
-                    if (!empty($row["Gender"])) {
-                        $gender = $row["Gender"];
+                    if (!empty($row["gender"])) {
+                        $gender = $row["gender"];
                     } else {
                         $gender = "-";
                     }
 
-                    if (!empty($row["Race"])) {
-                        $race = $row["Race"];
+                    if (!empty($row["race"])) {
+                        $race = $row["race"];
                     } else {
                         $race = "-";
                     }
 
-                    if (!empty($row["School_Name"])) {
-                        $schoolName = $row["School_Name"];
+                    if (!empty($row["school_name"])) {
+                        $schoolName = $row["school_name"];
                     } else {
                         $schoolName = "-";
                     }
 
-                    if (!empty($row["School_District"])) {
-                        $schoolDistrict = $row["School_District"];
+                    if (!empty($row["school_district"])) {
+                        $schoolDistrict = $row["school_district"];
                     } else {
                         $schoolDistrict = "-";
                     }
 
-                    if (!empty($row["Grade_In_Fall"])) {
-                        $gradeInFall = $row["Grade_In_Fall"];
+                    if (!empty($row["grade_in_fall"])) {
+                        $gradeInFall = $row["grade_in_fall"];
                     } else {
                         $gradeInFall = "-";
                     }
 
-                    if (!empty($row["GT_Status"])) {
-                        $gtStatus = $row["GT_Status"];
+                    if (!empty($row["gt_status"])) {
+                        $gtStatus = $row["gt_status"];
                     } else {
                         $gtStatus = "-";
                     }
 
-                    if (!empty($row["Grad_Year"])) {
-                        $gradYear = $row["Grad_Year"];
+                    if (!empty($row["grad_year"])) {
+                        $gradYear = $row["grad_year"];
                     } else {
                         $gradYear = "-";
                     }
 
-                    if (!empty($row["High_School"])) {
-                        $highSchool = $row["High_School"];
+                    if (!empty($row["high_school"])) {
+                        $highSchool = $row["high_school"];
                     } else {
                         $highSchool = "-";
                     }
 
-                    if (!empty($row["Email"])) {
-                        $email = $row["Email"];
+                    if (!empty($row["s_email"])) {
+                        $email = $row["s_email"];
                     } else {
                         $email = "-";
                     }
 
-                    if (!empty($row["Phone_Number"])) {
-                        $phoneNumber = $row["Phone_Number"];
+                    if (!empty($row["s_phone"])) {
+                        $phoneNumber = $row["s_phone"];
                     } else {
                         $phoneNumber = "-";
                     }
@@ -194,6 +221,74 @@
                     } else {
                         $siblingName = "-";
                     }
+					if (!empty($row["p_name"])) {
+						$parent1Name = $row["p_name"];
+					}
+
+					if (!empty($row["p_add1"])) {
+						$parent1AddressLine1 = $row["p_add1"];
+					}
+
+					if (!empty($row["p_add2"])) {
+						$parent1AddressLine2 = $row["p_add2"];
+					}
+
+					if (!empty($row["p_city"])) {
+						$parent1City = $row["p_city"];
+					}
+					
+					if (!empty($row["p_state"])) {
+						$parent1State = $row["p_state"];
+					}
+
+					if (!empty($row["p_zip"])) {
+						$parent1Zip = $row["p_zip"];
+					}
+					if (!empty($row["p_email"])) {
+						$parent1Email = $row["p_email"];
+					}
+					if (!empty($row["p_phone"])) {
+						$parent1PhoneNumber = $row["p_phone"];
+					}
+					if (!empty($row["p_phoneType"])) {
+						$parent1PhoneType = $row["p_phoneType"];
+					}
+
+					//var_dump($row2);
+					
+					//PARENT NUMBER TWO
+					if (!empty($row2["p_name"])) {
+						$parent2Name = $row2["p_name"];
+					}
+
+					if (!empty($row2["p_add1"])) {
+						$parent2AddressLine1 = $row2["p_add1"];
+					}
+
+					if (!empty($row2["p_add2"])) {
+						$parent2AddressLine2 = $row2["p_add2"];
+					}
+
+					if (!empty($row2["p_city"])) {
+						$parent2City = $row2["p_city"];
+					}
+					
+					if (!empty($row2["p_state"])) {
+						$parent2State = $row2["p_state"];
+					}
+
+					if (!empty($row2["p_zip"])) {
+						$parent2Zip = $row2["p_zip"];
+					}
+					if (!empty($row2["p_email"])) {
+						$parent2Email = $row2["p_email"];
+					}
+					if (!empty($row2["p_phone"])) {
+						$parent2PhoneNumber = $row2["p_phone"];
+					}
+					if (!empty($row2["p_phoneType"])) {
+						$parent2PhoneType = $row2["p_phoneType"];
+					}
                 ?>
 
                 <div class="col-md-4">
@@ -363,6 +458,120 @@
                 </div>
                 <div class="col-md-4">
                     <?php echo "<label>$siblingName</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5> Parent 2 Name</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1Name</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Phone Number</h5>
+                </div>
+				
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1PhoneNumber</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Phone Type</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1PhoneType</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Address Line 1</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1AddressLine1</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Address Line 2</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1AddressLine2</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Email</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1Email</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>City</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1City</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>State</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent1State</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5> Parent 1 Name</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2Name</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Phone Number</h5>
+                </div>
+				
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2PhoneNumber</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Phone Type</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2PhoneType</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Address Line 1</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2AddressLine1</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Address Line 2</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2AddressLine2</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>Email</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2Email</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>City</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2City</label>" ?>
+                </div>
+				
+				<div class="col-md-4">
+                    <h5>State</h5>
+                </div>
+				<div class="col-md-4">
+                    <?php echo "<label>$parent2State</label>" ?>
                 </div>
 
             </div>
