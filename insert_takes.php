@@ -4,6 +4,7 @@
 
     $user = "";
     $crn = "";
+	$success = true;
 
     if (!empty($_POST["user"])) {
         $user = $_POST["user"];
@@ -15,7 +16,6 @@
         $crn = "\"" . $_POST["crn"] . "\"";
     }
 	$sql = 'SELECT current_enrollment, capacity, grade_level FROM CLASS WHERE CRN = ' . $crn;
-	$sql2 = 'UPDATE CLASS SET current_enrollment = current_enrollment + 1 WHERE CRN = ' . $crn;
 	$sql3 = 'SELECT SECONDARY_USER_INFO.Grade_In_Fall as gif FROM USERS NATURAL JOIN SECONDARY_USER_INFO WHERE USERS.ID = ' . $user;
 	
 	$result = $conn->query($sql);
@@ -52,10 +52,19 @@
 	}
 	else{
 		$stmt = 'INSERT INTO Takes (ID, CRN) VALUES (' . $user . ', ' . $crn . ');' ; // ON DUPLICATE KEY UPDATE ;
-		
+		$sql2 = 'UPDATE CLASS SET current_enrollment = current_enrollment + 1 WHERE CRN = ' . $crn;
 
-		if ($conn->query($stmt) === TRUE) {
-			$conn->query($sql2);
+		
+		try{
+            $conn->query("BEGIN TRANSACTION");
+            $val4 = $conn->query($stmt);
+            $val5 = $conn->query($sql2);
+            $conn->commit();
+            $success = $success && $val4 && $val5;
+        }catch(Exception $e){
+            $conn->rollBack();
+        }
+		if ($success) {
 			echo "success";
 			header('Location: index.php');
 		} else {
