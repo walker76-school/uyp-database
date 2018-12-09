@@ -30,7 +30,8 @@
     if ($conn->query($stmt) === TRUE) {
         header('Location: admin_mentors.php');
     } else {
-        echo "Error: " . $stmt . "<br>" . $conn->error;
+        //echo "Error: " . $stmt . "<br>" . $conn->error;
+        header('Location: error.php');
     }
 
 ?>

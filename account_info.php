@@ -461,7 +461,7 @@
                 </div>
 				
 				<div class="col-md-4">
-                    <h5> Parent 2 Name</h5>
+                    <h5> Parent 1 Name</h5>
                 </div>
 				<div class="col-md-4">
                     <?php echo "<label>$parent1Name</label>" ?>
@@ -518,7 +518,7 @@
                 </div>
 				
 				<div class="col-md-4">
-                    <h5> Parent 1 Name</h5>
+                    <h5> Parent 2 Name</h5>
                 </div>
 				<div class="col-md-4">
                     <?php echo "<label>$parent2Name</label>" ?>
