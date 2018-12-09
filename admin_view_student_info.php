@@ -87,10 +87,13 @@
 
         $result = $conn->query($sql);
         //var_dump($result);
-        $row  = $result->fetch_assoc();
-        $row2 = $result->fetch_assoc();
+
 
         if($result && mysqli_num_rows($result) > 0){
+
+            $row  = $result->fetch_assoc();
+            $row2 = $result->fetch_assoc();
+
             if (!empty($row["suffix"])) {
                 $suffix = $row["suffix"];
             } else {
@@ -250,41 +253,48 @@
             if (!empty($row2["p_phoneType"])) {
                 $parent2PhoneType = $row2["p_phoneType"];
             }
-/*
-            if (!empty($row["Year_Accepted"])) {
-                $yearAccepted = $row["Year_Accepted"];
+
+            $adminSql = "SELECT * FROM admin_user_info WHERE ID = " . $id;
+            $adminResult = $conn->query($adminSql);
+
+            if($adminResult && mysqli_num_rows($adminResult) > 0){
+                $adminRow  = $adminResult->fetch_assoc();
+
+                if (!empty($adminRow["Year_Accepted"])) {
+                    $yearAccepted = $adminRow["Year_Accepted"];
+                }
+
+                if (!empty($adminRow["Grade_Accepted"])) {
+                    $gradeAccepted = $adminRow["Grade_Accepted"];
+                }
+
+                if (!empty($adminRow["Enrollment_Status"])) {
+                    $enrollmentStatus = $adminRow["Enrollment_Status"];
+                }
+
+                if (!empty($adminRow["Grant_Status"])) {
+                    $grantStatus = $adminRow["Grant_Status"];
+                }
+
+                if (!empty($adminRow["Disability"])) {
+                    $disability = $adminRow["Disability"];
+                }
+
+                if (!empty($adminRow["Health"])) {
+                    $health = $adminRow["Health"];
+                }
+
+                if ($adminRow["ELL"]) {
+                    $ell = 'Yes';
+                } else {
+                    $ell = 'No';
+                }
+
+                if (!empty($adminRow["Additional_Info"])) {
+                    $additional = $adminRow["Additional_Info"];
+                }
             }
 
-            if (!empty($row["Grade_Accepted"])) {
-                $gradeAccepted = $row["Grade_Accepted"];
-            }
-
-            if (!empty($row["Enrollment_Status"])) {
-                $enrollmentStatus = $row["Enrollment_Status"];
-            }
-
-            if (!empty($row["Grant_Status"])) {
-                $grantStatus = $row["Grant_Status"];
-            }
-
-            if (!empty($row["Disability"])) {
-                $disability = $row["Disability"];
-            }
-
-            if (!empty($row["Health"])) {
-                $health = $row["Health"];
-            }
-
-            if ($row["ELL"]) {
-                $ell = 'Yes';
-            } else {
-                $ell = 'No';
-            }
-
-            if (!empty($row["Additional_Info"])) {
-                $additional = $row["Additional_Info"];
-            }
-*/
             $error = "";
         } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(!$checkUserResult || mysqli_num_rows($checkUserResult) <= 0){

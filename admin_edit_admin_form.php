@@ -35,7 +35,6 @@
             $id = $_POST['user'];
         }
 
-
         $checkUserSql = "SELECT * FROM USERS WHERE id=" . $id ;
         $checkUserResult = $conn->query($checkUserSql);
         //var_dump($checkUserResult);
@@ -48,7 +47,7 @@
 
         if($result && mysqli_num_rows($result) > 0){
             $row = $result->fetch_assoc();
-            var_dump($row);
+            //var_dump($row);
 
             if (!empty($row["Year_Accepted"])) {
                 $yearAccepted = $row["Year_Accepted"];
@@ -100,20 +99,6 @@
 
             <div class="container-fluid">
                 <h3>Edit Admin Info</h3>
-                <p>Please enter a user's id, which can be found in the student directory, to edit the admin info for that student.</p>
-
-                <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method='post'>
-
-                    <!-- User -->
-                    <div class="form-group">
-                      <div class="form-label-group">
-                         <input type="text" id="inputID" name="user" class="form-control" placeholder="User ID" required="required">
-                        <label for="inputID">User ID</label>
-                      </div>
-                    </div>
-                    <input class='btn btn-primary btn-block col-md-3' type='submit' name='submit' value='Search User'>
-                       
-                </form>
 
                 <?php
                     if(!empty($error)){

@@ -14,7 +14,7 @@
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
-    <?php include("user_validation.php") ?>
+    <?php include("admin_validation.php") ?>
 </head>
 
 <body id="page-top">
@@ -70,11 +70,12 @@
 		$parent2City = "";
 		$parent2State = "";
 
+        $error;
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $_POST['user'];
         }
 
-        $user = $_COOKIE['validated'];
         $sql = "SELECT suffix, first_name, last_name, initial, preferred_name, sei.address_line_1 as s_add1, sei.address_line_2 as s_add2,".
                "sei.city as s_city, sei.state as s_state, sei.zip as s_zip, birthday, gender, race, school_name, school_district," .
                "grade_in_fall, gt_status, grad_year, high_school, sei.email as s_email, sei.phone_number as s_phone, sibling_name," .
@@ -254,6 +255,8 @@
 			if (!empty($row2["p_phoneType"])) {
                 $parent2PhoneType = $row2["p_phoneType"];
             }
+        } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $error = "User not found";
         }
     ?>
 
@@ -266,8 +269,22 @@
         <div id="content-wrapper">
 
             <div class="container-fluid">
+                <h3>Edit Secondary Info</h3>
+
+                <?php
+                    if (empty($error)) {
+                        echo "<div>";
+                        echo "</br>";
+                    } else {
+                        echo "</br>";
+                        echo "<label style='color: red;'>$error</label>";
+                        echo "<div style='display: none;'>";
+                    }
+                ?>
 
                 <form action='insert_secondary.php' method='post'>
+
+                    <input type='hidden' name='user' value=<?php echo $user ?>>
 
                     <!-- Suffix -->
                     <div class="form-group">
@@ -893,6 +910,7 @@
                     </div>
                     <input class='btn btn-primary btn-block col-md-3' type='submit' name='submit' value='Submit'>
                 </form>
+                </div>
                 </br>
             </div>
             <!-- /.container-fluid -->

@@ -178,12 +178,12 @@
                 <h3>Edit Secondary Info</h3>
                 <p>Please enter a user's id, which can be found in the student directory, to edit the secondary info for that student.</p>
 
-                <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method='post'>
+                <form action='admin_edit_secondary_form.php' method='post'>
 
                     <!-- User -->
                     <div class="form-group">
                       <div class="form-label-group">
-                         <input type="text" id="inputID" name="id" class="form-control" placeholder="User ID" required="required">
+                         <input type="text" id="inputID" name="user" class="form-control" placeholder="User ID" required="required">
                         <label for="inputID">User ID</label>
                       </div>
                     </div>

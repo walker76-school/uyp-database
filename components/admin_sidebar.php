@@ -19,7 +19,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="admin_edit_admin_info.php">
+    <a class="nav-link" href="admin_edit_admin.php">
       <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
       <span>Edit Admin Info</span>
     </a>
