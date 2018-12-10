@@ -37,7 +37,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="admin_class_directory.php">
+    <a class="nav-link" href="user_class_directory.php">
       <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
       <span>Class Directory</span>
     </a>

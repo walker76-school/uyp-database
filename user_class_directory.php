@@ -14,7 +14,7 @@
 
     <?php include("components/header.php"); ?>
     <?php include("database.php"); ?>
-    <?php include("admin_validation.php"); ?>
+    <?php include("user_validation.php"); ?>
 
 </head>
 
@@ -95,7 +95,19 @@
                         echo "<td>", !empty($row['Year']) ? $row['Year'] : "-", "</td>";
                         echo "<td>", !empty($row['Start_Time']) ? $row['Start_Time'] : "-", "</td>";
                         echo "<td>", !empty($row['End_Time']) ? $row['End_Time'] : "-", "</td>";
-                        echo "<td>", !empty($row['Current_Enrollment']) ? $row['Current_Enrollment'] : "-", "</td>";
+
+                        $currentEnrollment = "-";
+                        if(!empty($row['Current_Enrollment'])){
+                          $currentEnrollment = (int) $row['Current_Enrollment'];
+                          if(!empty($row['Capacity'])){
+                            $cap = (int)$row['Capacity'];
+                            if($currentEnrollment > $cap){
+                              $currentEnrollment = $cap;
+                            }
+                          }
+                        }
+
+                        echo "<td>" . $currentEnrollment . "</td>";
                         echo "<td>", !empty($row['Capacity']) ? $row['Capacity'] : "-", "</td>";
                         echo "</tr>";
                       }
