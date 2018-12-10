@@ -326,7 +326,7 @@
                                 <h5>Preferred Name</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="preferredName" class="form-control" value=<?php echo $preferredName ?>>
+                                <input type="text" name="preferredName" class="form-control" value="<?php echo $preferredName ?>">
                             </div>
                         </div>
                     </div>
