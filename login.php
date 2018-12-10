@@ -35,7 +35,7 @@
           $pass = $_POST["pass"];
         }
 
-        if($user == 'admin' && $pass = 'password'){
+        if($user == 'admin' && $pass == 'password'){
             setcookie("validated", $user, time() + (86400 * 30), "/"); // 86400 = 1 day
             setcookie("type", "admin", time() + (86400 * 30), "/");
             header("Location: admin_index.php");

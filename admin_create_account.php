@@ -40,7 +40,7 @@
 
             $query = "INSERT INTO USERS VALUES (" . $user . ", '" . $pass . "');";
             $conn->query($query);
-            echo $query;
+            //echo $query;
         }
     }
     
