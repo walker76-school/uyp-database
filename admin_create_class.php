@@ -27,6 +27,8 @@
         <div id="content-wrapper">
 
             <div class="container-fluid">
+                <h3>Create Class</h3>
+                </br>
 
                 <form method="post" action="insert_class.php">
 

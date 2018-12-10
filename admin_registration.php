@@ -100,7 +100,7 @@
               <div class="card-footer small text-muted">Last Updated <?php echo $timeStamp ?></div>
             </div>
 
-            <form action='remove_mentor.php' method='post'>
+            <form action='remove_takes.php' method='post'>
                 <div class="form-group">
                   <div class="form-row">
                     <div class="col-md-2">
