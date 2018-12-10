@@ -67,8 +67,8 @@
 				$correct_grade = true;
 			}
 
-			if($capacity > 0 && $enrollment >= $capacity){
-				$message = "Error: This class is full";
+			if($capacity > 0 && $enrollment >= $capacity && strcmp($_COOKIE['type'], "user") == 0){
+				$message = "This class is full";
 			}else if($correct_grade == false){
 				$message = "You are not in the correct grade for this class.";
 				//echo "You are in grade " . $grade_level_student . "while the class is for " . $grade_level_class;
