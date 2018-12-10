@@ -632,7 +632,7 @@
 
                     <!-- Sibling -->
                     <div class="form-group">
-                        <h5>Do you have a sibling already in the UPY program?</h5>
+                        <h5>Do you have a sibling already in the UYP program?</h5>
                         <input type="radio" id="siblingYes" name="sibling" value="yes" onclick="javascript:siblingForm();" required="required" <?php echo $yesChecked ?'checked':'' ?>> Yes<br>
                         <input type="radio" id="siblingNo" name="sibling" value="no" onclick="javascript:siblingForm();" required="required" <?php echo $noChecked ?'checked':'' ?>> No<br>
                     </div>
