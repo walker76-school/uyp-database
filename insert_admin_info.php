@@ -28,8 +28,8 @@
         $yearAccepted = $_POST["yearAccepted"];
     }
 
-    if (!empty($_POST["grantStatus"])) {
-        $grantStatus = "\"" . $_POST["grantStatus"] . "\"";
+    if (!empty($_POST["grantName"])) {
+        $grantStatus = "\"" . $_POST["grantName"] . "\"";
     } else {
         $grantStatus = "NULL";
     }
@@ -57,8 +57,9 @@
 
     if ($conn->query($stmt) === TRUE) {
         header('Location: index.php');
+        //echo $stmt;
     } else {
-        //echo "Error: " . $stmt . "<br>" . $conn->error;
+        echo "Error: " . $stmt . "<br>" . $conn->error;
         header('Location: error.php');
     }
 
