@@ -87,7 +87,7 @@
 					$conn->rollBack();
 				}
 				if ($success) {
-					$message = "success";
+					$message = "You've successfully enrolled in the class";
 				} else {
 					$message = "Error: " . $stmt . "<br>" . $conn->error;
 				}
