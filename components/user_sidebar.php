@@ -19,6 +19,12 @@
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="user_schedule.php">
+      <!--<i class="fas fa-fw fa-tachometer-alt"></i>-->
+      <span>Schedule</span>
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="takes.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
       <span>Register for Class</span>
@@ -36,6 +42,7 @@
       <span>Class Directory</span>
     </a>
   </li>
+
   <li class="nav-item">
     <a class="nav-link" href="logout.php">
       <!--<i class="fas fa-fw fa-chart-area"></i>-->
