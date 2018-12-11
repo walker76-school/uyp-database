@@ -610,7 +610,7 @@
                                 <h5>Phone Number</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="phoneNumber" class="form-control" value=<?php echo $phoneNumber ?> >
+                                <input type="text" name="phoneNumber" class="form-control" length=12 value=<?php echo $phoneNumber ?> >
                             </div>
                         </div>
                     </div>
@@ -734,7 +734,7 @@
                                 <h5>Parent/Guardian 1 Phone Number</h5>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" name="parent1PhoneNumber" class="form-control" required="required" value=<?php echo $parent1PhoneNumber ?>>
+                                <input type="text" name="parent1PhoneNumber" class="form-control" length=12 required="required" value=<?php echo $parent1PhoneNumber ?>>
                             </div>
                         </div>
                     </div>
@@ -869,7 +869,7 @@
                                     <h5>Parent/Guardian 2 Phone Number</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="parent2PhoneNumber" name="parent2PhoneNumber" class="form-control" <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2PhoneNumber ?>>
+                                    <input type="text" id="parent2PhoneNumber" name="parent2PhoneNumber" class="form-control" length=12 <?php echo $parent2 ?'required':'' ?> value=<?php echo $parent2PhoneNumber ?>>
                                 </div>
                             </div>
                         </div>

@@ -383,6 +383,7 @@
         header('Location: index.php');
         echo "Success";
     } else {
+        header('Location: error.php');
         //echo "Error: " . $stmt . "<br>" . $conn->error;
     }
 
